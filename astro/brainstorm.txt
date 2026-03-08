@@ -1,0 +1,8 @@
+We have to build our own engine for sure. That is what our USP will be. 
+
+We need to know the whole science behind this. 
+
+Firstly, lets explore the following with this. 
+
+Pyswisseph -> This is to get the planet positions 
+
