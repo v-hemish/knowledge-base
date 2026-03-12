@@ -1,0 +1,25 @@
+Programming: Python, Scala, Go, Rust, C++
+
+Machine Learning: PyTorch, TensorFlow, scikit-learn, SparkML, MLPs, Transformers, Mixture-of-Experts (MoE)
+
+ML Systems & MLOps: Distributed Training Pipelines, Automated Model Benchmarking, Feature Stores, Model Deployment & Evaluation, MLflow, ClearML, Weights & Biases, GPU/CPU Scaling, Model Debugging
+
+Data & Databases: Apache Spark, BigQuery, PostgreSQL, SQL Server, AWS RDS, Data Processing Pipelines, SQL (DDL/DML)
+
+Cloud & Infrastructure: GCP, AWS SageMaker, Docker, Kubernetes, Helm, Terraform, Ansible, Chef, Docker Swarm, SLURM, Infrastructure as Code (IaC)
+
+CI/CD & DevOps: Jenkins, GitLab CI/CD
+
+Observability & Reliability: Prometheus, Grafana, ELK Stack, Profiling, Distributed Tracing, Performance Optimization, Scalability Engineering, SLOs, Splunk
+
+Security & Networking: OAuth2, JWT, OpenID Connect (OIDC), RBAC/IAM, Azure Key Vault, TCP/IP, VPC/VNet Design, DNS, Load Balancing
+
+Operating Systems: RHEL, CentOS, Oracle Linux, Debian
+
+Tools: Jira, Trello
+
+
+---------------------------------------------------------------
+
+wireshark, netstat, tcpdump, dig
+
