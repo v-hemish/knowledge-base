@@ -1,25 +1,67 @@
-Programming: Python, Scala, Go, Rust, C++
+Programming
 
-Machine Learning: PyTorch, TensorFlow, scikit-learn, SparkML, MLPs, Transformers, Mixture-of-Experts (MoE)
+Python, Scala, Go, Rust, C++
 
-ML Systems & MLOps: Distributed Training Pipelines, Automated Model Benchmarking, Feature Stores, Model Deployment & Evaluation, MLflow, ClearML, Weights & Biases, GPU/CPU Scaling, Model Debugging
+Machine Learning & AI
 
-Data & Databases: Apache Spark, BigQuery, PostgreSQL, SQL Server, AWS RDS, Data Processing Pipelines, SQL (DDL/DML)
+PyTorch, TensorFlow, scikit-learn, SparkML, MLPs, Transformers, Mixture-of-Experts (MoE), Retrieval-Augmented Generation (RAG)
 
-Cloud & Infrastructure: GCP, AWS SageMaker, Docker, Kubernetes, Helm, Terraform, Ansible, Chef, Docker Swarm, SLURM, Infrastructure as Code (IaC)
+Model Training & Optimization
 
-CI/CD & DevOps: Jenkins, GitLab CI/CD
+Hugging Face Trainer, DeepSpeed, FSDP, QLoRA, Distributed Training, GPU/CPU Scaling, Model Debugging, Automated Model Benchmarking
 
-Observability & Reliability: Prometheus, Grafana, ELK Stack, Profiling, Distributed Tracing, Performance Optimization, Scalability Engineering, SLOs, Splunk
+Inference & Model Serving
 
-Security & Networking: OAuth2, JWT, OpenID Connect (OIDC), RBAC/IAM, Azure Key Vault, TCP/IP, VPC/VNet Design, DNS, Load Balancing
+vLLM, Triton Inference Server, Text Generation Inference (TGI), Ray Serve, Model Deployment & Evaluation
 
-Operating Systems: RHEL, CentOS, Oracle Linux, Debian
+ML Systems & MLOps
 
-Tools: Jira, Trello
+MLflow, Kubeflow, SageMaker, ClearML, Weights & Biases, Feature Stores, Experiment Tracking, Distributed Training Pipelines
 
+Data Engineering & Storage
 
----------------------------------------------------------------
+Apache Spark, Trino, Iceberg, ClickHouse, StarRocks, Databricks, Snowflake, MinIO, SQL (DDL/DML), Data Processing Pipelines
 
-wireshark, netstat, tcpdump, dig
+Databases
 
+PostgreSQL, SQL Server, BigQuery, AWS RDS
+
+Data Integration & Transformation
+
+Apache NiFi, Airbyte, dbt
+
+Vector Databases & Retrieval
+
+FAISS, Chroma, Weaviate
+
+LLM Frameworks
+
+LangChain, Haystack
+
+Cloud & Infrastructure
+
+GCP, AWS, SageMaker, Docker, Kubernetes, Helm, Terraform, Ansible, Chef, Docker Swarm, SLURM, Infrastructure as Code (IaC)
+
+CI/CD
+
+Jenkins, GitLab CI/CD
+
+Observability & Reliability
+
+Prometheus, Grafana, OpenTelemetry, ELK Stack, Splunk, Distributed Tracing, Performance Optimization, Scalability Engineering, Service Level Objectives (SLOs)
+
+Security & Networking
+
+OAuth2, JWT, OpenID Connect (OIDC), RBAC/IAM, Azure Key Vault, TCP/IP, VPC/VNet Design, DNS, Load Balancing
+
+Systems & Operating Environments
+
+RHEL, CentOS, Oracle Linux, Debian
+
+Networking & Debugging Tools
+
+Wireshark, tcpdump, netstat, dig
+
+Collaboration & Project Tools
+
+Jira, Trello
