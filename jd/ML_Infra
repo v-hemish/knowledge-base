@@ -1,36 +1,45 @@
+Skills & Technologies
 Programming
 
 Python, Scala, Go, Rust, C++
 
 Machine Learning & AI
 
-PyTorch, TensorFlow, scikit-learn, SparkML, MLPs, Transformers, Mixture-of-Experts (MoE), Retrieval-Augmented Generation (RAG)
+PyTorch, TensorFlow, scikit-learn, SparkML, Hugging Face Transformers, Multilayer Perceptrons (MLPs), Transformers, Mixture-of-Experts (MoE), Retrieval-Augmented Generation (RAG), Multimodal ML Pipelines
 
 Model Training & Optimization
 
-Hugging Face Trainer, DeepSpeed, FSDP, QLoRA, Distributed Training, GPU/CPU Scaling, Model Debugging, Automated Model Benchmarking
+Hugging Face Trainer, DeepSpeed, Fully Sharded Data Parallel (FSDP), QLoRA, Distributed Training, GPU/CPU Scaling, Automated Model Benchmarking, Model Debugging, Hyperparameter Optimization (Optuna)
+
+Model Optimization Frameworks
+
+ONNX Runtime, TensorRT, DeepSpeed, FSDP
 
 Inference & Model Serving
 
-vLLM, Triton Inference Server, Text Generation Inference (TGI), Ray Serve, Model Deployment & Evaluation
+vLLM, Triton Inference Server, TorchServe, Text Generation Inference (TGI), Ray Serve, GPU-Based Inference Systems, High-Concurrency Model Serving, Model Deployment & Evaluation
 
 ML Systems & MLOps
 
-MLflow, Kubeflow, SageMaker, ClearML, Weights & Biases, Feature Stores, Experiment Tracking, Distributed Training Pipelines
+MLflow, Kubeflow, Azure ML, AWS SageMaker, ClearML, Weights & Biases, Feature Stores, Experiment Tracking, Distributed Training Pipelines, Multimodal ML Pipelines
 
-Data Engineering & Storage
+Distributed Systems & Scalable Inference
 
-Apache Spark, Trino, Iceberg, ClickHouse, StarRocks, Databricks, Snowflake, MinIO, SQL (DDL/DML), Data Processing Pipelines
+Ray, Triton Inference Server, TorchServe, Distributed Model Serving, High-Concurrency Inference Systems
 
-Databases
+Data Engineering & Processing
 
-PostgreSQL, SQL Server, BigQuery, AWS RDS
+Apache Spark, Trino, Apache Iceberg, ClickHouse, StarRocks, Databricks, Snowflake, SQL (DDL/DML), Data Processing Pipelines
+
+Databases & Storage
+
+PostgreSQL, SQL Server, BigQuery, AWS RDS, MinIO
 
 Data Integration & Transformation
 
 Apache NiFi, Airbyte, dbt
 
-Vector Databases & Retrieval
+Vector Databases & Retrieval Systems
 
 FAISS, Chroma, Weaviate
 
@@ -40,11 +49,11 @@ LangChain, Haystack
 
 Cloud & Infrastructure
 
-GCP, AWS, SageMaker, Docker, Kubernetes, Helm, Terraform, Ansible, Chef, Docker Swarm, SLURM, Infrastructure as Code (IaC)
+AWS (EC2, IAM), GCP (Compute Engine, Cloud Functions, VPC, IAM, GKE, BigQuery), Azure ML, Docker, Kubernetes, Helm, Terraform, Ansible, Chef, Docker Swarm, SLURM, Infrastructure as Code (IaC)
 
-CI/CD
+CI/CD & DevOps
 
-Jenkins, GitLab CI/CD
+GitHub Actions, Jenkins, GitLab CI/CD, DevOps Automation, Agile Methodology
 
 Observability & Reliability
 
@@ -52,7 +61,7 @@ Prometheus, Grafana, OpenTelemetry, ELK Stack, Splunk, Distributed Tracing, Perf
 
 Security & Networking
 
-OAuth2, JWT, OpenID Connect (OIDC), RBAC/IAM, Azure Key Vault, TCP/IP, VPC/VNet Design, DNS, Load Balancing
+OAuth2, JWT, OpenID Connect (OIDC), RBAC/IAM, Azure Key Vault, TCP/IP Networking, VPC/VNet Design, DNS, Load Balancing
 
 Systems & Operating Environments
 
@@ -64,4 +73,4 @@ Wireshark, tcpdump, netstat, dig
 
 Collaboration & Project Tools
 
-Jira, Trello
+Jira, Trello, GitHub
