@@ -6,4 +6,4 @@ Intelligent GPU Scheduling for AI Workloads on Kubernetes
 
 2. vLLM done
 
-MAR 18TH: WILL STUDY ABOUT VLLM IN DETAIL
+MAR 19TH: WILL STUDY ABOUT VLLM IN DETAIL
