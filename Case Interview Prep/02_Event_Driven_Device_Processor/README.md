@@ -58,3 +58,6 @@ The processor must:
 - Idempotency
 - Event versioning
 - Monitoring and alerting
+
+
+Will do this tomorrow. 
