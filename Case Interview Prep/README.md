@@ -1,66 +1,30 @@
-# Case Interview Prep - Base
+# Base Power — Round 1 coding screen (Python)
 
-This knowledge base contains 10 carefully selected coding problems to prepare for the Base interview. These problems are designed to cover the highest-probability areas for Base interviews.
+The live round is often about **~30 minutes** on one realistic problem. These drills are **25 minutes each** so you finish a full pass with a few minutes to narrate tradeoffs—same rhythm as the real slot.
 
-## Focus Areas
+## How to use
 
-- **OOP Design**: Classes, inheritance, encapsulation
-- **Practical Python**: Real-world Python patterns and idioms
-- **State Management**: State machines and transitions
-- **Reliability**: Fault tolerance, retries, circuit breakers
-- **Platform/Backend Thinking**: Distributed systems, scheduling, orchestration
-- **Clean Code**: Readability, maintainability, extensibility
+1. Open `drills/NN_.../README.md` for the goal and **what an interviewer is testing**.
+2. Code in **`practice.py`** until `python practice.py` exits cleanly. Each file has **`--- FILL: ... ---`** blocks: **WHERE** to write code and **WHAT** it must do (remove the `raise NotImplementedError` when you replace it).
+3. If stuck, open **`reference.py`** and scroll: every function ends with a **Concepts** block that explains the idea.
 
-## Problems Overview
+## The ten drills
 
-1. **Battery Fleet Manager** - Core OOP, state management, encapsulation
-2. **Event-Driven Device Processor** - Polymorphism, dispatcher patterns, extensibility
-3. **Deployment Manager** - Business rules, environment modeling, platform thinking
-4. **Circuit Breaker** - Resilience patterns, state machines, failure handling
-5. **Rate-Limited Command Scheduler** - Queue design, time-based logic, backend reasoning
-6. **Alert Deduplication and Escalation** - Operational thinking, time windows, incident management
-7. **Job Runner With Dependencies** - Orchestration, dependency graphs, error propagation
-8. **RBAC for Internal Operations** - Security, policy design, audit logging
-9. **Inventory System** - Domain modeling, invariants, business constraints
-10. **Fleet Simulation Engine** - Strategy pattern, simulation design, system modeling
+| # | Folder | You practice (interviewer signal) |
+|---|--------|-----------------------------------|
+| 1 | `drills/01_device_registry` | Domain types, invariants, coordinator over a fleet dict |
+| 2 | `drills/02_event_dispatch` | Parse untrusted dicts, dispatch table, small side effects |
+| 3 | `drills/03_rate_limit_window` | Time windows, fixed-window limiting, fairness intuition |
+| 4 | `drills/04_circuit_breaker` | Explicit state machine, failure budgets, recovery probe |
+| 5 | `drills/05_retry_backoff` | Retries, exponential backoff, what is “retryable” |
+| 6 | `drills/06_dedupe_window` | Dedup keys, sliding-ish behavior, operational noise |
+| 7 | `drills/07_topo_jobs` | DAG, cycle detection, dependency order |
+| 8 | `drills/08_rbac_checks` | Authorization as data, audit trail, least privilege |
+| 9 | `drills/09_stock_reserve` | Reservations, invariants (no negative available), idempotency hint |
+| 10 | `drills/10_deploy_window` | Business rules over time, policy objects, clarity |
 
-## Recommended Order
+**Suggested order:** 1 → 2 → 4 → 3 → 5 → 6 → 7 → 8 → 9 → 10 (harder reliability patterns after warm-up).
 
-Complete these in the following order to build confidence progressively:
+**Check solutions:** from `Case Interview Prep`, run `python3 drills/verify_against_reference.py` (confirms each `reference.py` satisfies that drill’s tests).
 
-1. Battery Fleet Manager
-2. Event-Driven Device Processor
-3. Deployment Manager
-4. Circuit Breaker
-5. Rate-Limited Command Scheduler
-6. Alert Deduplication
-7. Job Runner
-8. RBAC
-9. Inventory System
-10. Fleet Simulation Engine
-
-## Top 5 Most Likely
-
-If you had to prioritize, focus on these first as they're most aligned with Base's style:
-
-1. **Battery Fleet Manager**
-2. **Event-Driven Device Processor**
-3. **Deployment Manager**
-4. **Circuit Breaker**
-5. **Rate-Limited Command Scheduler**
-
-These feel most like "real-world Python + OOP + platform/backend" problems.
-
-## Interview Approach
-
-For every problem, practice this flow:
-
-1. **Clarify Assumptions** - Ask about edge cases, scale, constraints
-2. **Define Classes First** - Sketch out your objects before coding
-3. **Explain Design Choices** - Say why each class/method exists
-4. **Write Clean Methods** - Focus on readability over tricks
-5. **Handle Edge Cases** - Consider failures, invalid inputs, race conditions
-6. **Discuss Testing** - Mention what tests you would write
-7. **Production Improvements** - Suggest monitoring, logging, scalability enhancements
-
-**Remember**: The process and explanation are more important than finishing fast.
+Company context (optional reading): [telemetry / fleet writeup](https://inside.basepowercompany.com/p/building-a-telemetry-stack-for-the).
