@@ -1,5 +1,5 @@
 # Base Power — Round 1 coding screen (Python)
-
+ Sat checkin
 The live round is often about **~30 minutes** on one realistic problem. These drills are **25 minutes each** so you finish a full pass with a few minutes to narrate tradeoffs—same rhythm as the real slot.
 
 ## How to use
