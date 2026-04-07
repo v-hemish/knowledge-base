@@ -1,31 +1,40 @@
-# Base Power — Round 1 coding screen (Python)
- Sat checkin
- Sunday Checkin
-The live round is often about **~30 minutes** on one realistic problem. These drills are **25 minutes each** so you finish a full pass with a few minutes to narrate tradeoffs—same rhythm as the real slot.
+# Python Interview Game Drills (30 x 5 min)
+
+This pack is tuned for a technical screen focused on code literacy and real-world coding, not LeetCode tricks.
+
+Format:
+- 5 game worlds
+- 6 micro-drills per world
+- 30 total drills
+- each micro-drill: ~5 minutes
+
+Main goals:
+- practice clear assumptions
+- write clean, elegant Python
+- model small real-world behaviors with readable code
 
 ## How to use
 
-1. Open `drills/NN_.../README.md` for the goal and **what an interviewer is testing**.
-2. Code in **`practice.py`** until `python practice.py` exits cleanly. Each file has **`--- FILL: ... ---`** blocks: **WHERE** to write code and **WHAT** it must do (remove the `raise NotImplementedError` when you replace it).
-3. If stuck, open **`reference.py`** and scroll: every function ends with a **Concepts** block that explains the idea.
+1. Open `drills/NN_.../README.md` for prompt + interview signal.
+2. In each `practice.py`, solve one `FILL` block at a time.
+3. If stuck, open `solution.py` for a complete answer plus theory-heavy docstrings.
+4. Run each drill with `python3 practice.py`.
+5. Narrate assumptions out loud as if in a live interview.
 
-## The ten drills
+## Game Worlds (5 x 6 micro-drills)
 
-| # | Folder | You practice (interviewer signal) |
-|---|--------|-----------------------------------|
-| 1 | `drills/01_device_registry` | Domain types, invariants, coordinator over a fleet dict |
-| 2 | `drills/02_event_dispatch` | Parse untrusted dicts, dispatch table, small side effects |
-| 3 | `drills/03_rate_limit_window` | Time windows, fixed-window limiting, fairness intuition |
-| 4 | `drills/04_circuit_breaker` | Explicit state machine, failure budgets, recovery probe |
-| 5 | `drills/05_retry_backoff` | Retries, exponential backoff, what is “retryable” |
-| 6 | `drills/06_dedupe_window` | Dedup keys, sliding-ish behavior, operational noise |
-| 7 | `drills/07_topo_jobs` | DAG, cycle detection, dependency order |
-| 8 | `drills/08_rbac_checks` | Authorization as data, audit trail, least privilege |
-| 9 | `drills/09_stock_reserve` | Reservations, invariants (no negative available), idempotency hint |
-| 10 | `drills/10_deploy_window` | Business rules over time, policy objects, clarity |
+| # | Folder | Game theme | Core concepts covered |
+|---|--------|------------|------------------|
+| 1 | `drills/01_space_cargo` | Spaceship logistics | parsing, validation, dataclass, invariants, idempotency, formatting |
+| 2 | `drills/02_potion_crafting` | Crafting system | dict/list/set ops, counting, filtering, two-phase mutation, ranking |
+| 3 | `drills/03_maze_messenger` | Navigation service | grid parsing, neighbors, BFS, shortest path, queue usage |
+| 4 | `drills/04_boss_retry_arena` | Reliability engine | exception design, retry policy, backoff, fail-fast behavior |
+| 5 | `drills/05_tournament_scoreboard` | Match backend | class design, aggregation, sorting tie-breakers, report generation |
 
-**Suggested order:** 1 → 2 → 4 → 3 → 5 → 6 → 7 → 8 → 9 → 10 (harder reliability patterns after warm-up).
+## Optional verifier
 
-**Check solutions:** from `Case Interview Prep`, run `python3 drills/verify_against_reference.py` (confirms each `reference.py` satisfies that drill’s tests).
+Run:
 
-Company context (optional reading): [telemetry / fleet writeup](https://inside.basepowercompany.com/p/building-a-telemetry-stack-for-the).
+`python3 drills/verify_against_solution.py`
+
+This temporarily swaps your `practice.py` functions with `solution.py` and confirms tests in each practice file pass.
