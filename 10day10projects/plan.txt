@@ -1,0 +1,432 @@
+10 projects in 10 days
+Day 1 — Bank Vault API
+
+What you build:
+A mini banking backend with accounts, deposits, withdrawals, and transfers.
+
+Why it is awesome:
+This teaches you how backend logic can go wrong if you don’t think carefully. Transfers are not just CRUD. This is where you start thinking like an engineer.
+
+What it teaches:
+
+classes and object modeling
+validation
+state changes
+error handling
+clean service methods
+thinking about invariants
+
+Core idea:
+Money should not disappear. Money should not duplicate.
+
+Features:
+
+create account
+deposit
+withdraw
+transfer between accounts
+transaction history
+
+Important lesson:
+Correctness over code volume.
+A cracked developer thinks: “What must always remain true?”
+
+Why it hooks you:
+It feels real, and bugs here feel meaningful.
+
+Day 2 — Auth Fortress
+
+What you build:
+A user auth backend with signup, login, password hashing, and protected routes.
+
+Why it is awesome:
+Auth is everywhere. Once you understand this, backend apps stop feeling magical.
+
+What it teaches:
+
+FastAPI or Flask route design
+request validation
+password hashing
+JWT/session concepts
+middleware/dependencies
+separation of public vs protected endpoints
+
+Features:
+
+signup
+login
+get current user
+protected /profile
+role field like admin/user
+
+Important lesson:
+Identity and access control.
+Who are you, and what are you allowed to do?
+
+Why it hooks you:
+The moment login works and protected routes make sense, you start feeling like you’re building real software.
+
+Day 3 — Dungeon Inventory
+
+What you build:
+A game-style inventory backend where players can own items, equip items, use items, and manage capacity.
+
+Why it is awesome:
+This makes database/entity modeling fun. Way more fun than plain ecommerce products.
+
+What it teaches:
+
+entity relationships
+ownership modeling
+constraints
+business rules
+inventory logic
+
+Features:
+
+create player
+add item to inventory
+equip item
+use consumable
+enforce max carrying capacity
+list equipped items vs backpack items
+
+Important lesson:
+Modeling the domain properly matters more than writing many endpoints.
+
+Why it hooks you:
+Feels like building RPG mechanics, but it is actually backend training.
+
+Day 4 — Mini Amazon: Cart & Checkout
+
+What you build:
+A mini ecommerce backend with products, cart, and order placement.
+
+Why it is awesome:
+This is your first direct step toward the Amazon clone.
+
+What it teaches:
+
+multi-entity design
+cart vs order distinction
+order lifecycle
+schema thinking
+route organization
+
+Features:
+
+list products
+add to cart
+update quantity
+remove from cart
+place order
+view orders
+
+Important lesson:
+State transitions.
+A cart is not an order. An order is not a payment.
+
+Why it hooks you:
+You’re building something recognizable and resume-worthy.
+
+Day 5 — The Payment Trap
+
+What you build:
+A fake payment service that simulates successful, failed, and duplicate payments.
+
+Why it is awesome:
+This teaches serious backend thinking. Payments are where you learn to be careful.
+
+What it teaches:
+
+idempotency
+failure handling
+retries
+external-service simulation
+status workflows
+
+Features:
+
+create payment request
+simulate payment success/failure
+attach payment to order
+reject duplicate charge attempts
+refund simulation
+
+Important lesson:
+Never trust retries blindly.
+The same request should not accidentally charge twice.
+
+Why it hooks you:
+This feels like “real backend engineer” territory.
+
+Day 6 — Ticket Wars
+
+What you build:
+A movie or concert seat-booking backend.
+
+Why it is awesome:
+This is one of the best backend projects ever for learning. It teaches scarcity and conflict.
+
+What it teaches:
+
+concurrency thinking
+reservation windows
+race conditions
+locking mindset
+seat allocation logic
+
+Features:
+
+create show
+list available seats
+reserve seat
+confirm booking
+cancel reservation
+expire stale holds
+
+Important lesson:
+Two users may try to grab the same resource.
+This is where backend gets real.
+
+Why it hooks you:
+You’ll instantly see why naive code fails.
+
+Day 7 — Quest Board API
+
+What you build:
+A task/quest backend like a gamified Trello or adventure board.
+
+Why it is awesome:
+This makes boring project/task management actually fun.
+
+What it teaches:
+
+status workflows
+priorities
+filtering
+ownership
+deadlines
+clean CRUD done right
+
+Features:
+
+create quests
+assign quest
+change status
+add labels
+filter by status/priority
+track completion streaks
+
+Important lesson:
+CRUD is not trivial when the model is clean and the workflow is thoughtful.
+
+Why it hooks you:
+Feels like productivity software with game energy.
+
+Day 8 — Notification Reactor
+
+What you build:
+A notification backend that sends simulated email/in-app alerts for events.
+
+Why it is awesome:
+This introduces event-driven design without getting too heavy.
+
+What it teaches:
+
+background jobs mindset
+decoupling
+event-based flow
+retry logic
+notification preferences
+
+Features:
+
+trigger on order placed
+trigger on payment success
+trigger on quest completed
+notification log
+read/unread state
+user preferences
+
+Important lesson:
+Not everything should happen inside the request cycle.
+
+Why it hooks you:
+Your earlier projects start feeling more alive when they can emit events.
+
+Day 9 — Review Arena
+
+What you build:
+A review/rating system for products, movies, or games.
+
+Why it is awesome:
+Seems easy, but teaches subtle backend discipline.
+
+What it teaches:
+
+uniqueness constraints
+aggregate calculations
+permissions
+update/delete rules
+data consistency
+
+Features:
+
+add rating
+write review
+edit review
+delete review
+average rating endpoint
+enforce one review per user per item
+
+Important lesson:
+Small features often hide important rules.
+
+Why it hooks you:
+This gives your Amazon-style ecosystem more realism.
+
+Day 10 — Boss Fight: Mini Marketplace Backend
+
+What you build:
+A capstone combining the best pieces: users, products, cart, orders, payments, reviews.
+
+Why it is awesome:
+This is the final synthesis. You stop thinking in isolated endpoints and start thinking in systems.
+
+What it teaches:
+
+architecture
+module organization
+combining services
+maintaining clarity as complexity grows
+backend confidence
+
+Features:
+
+auth
+products
+cart
+orders
+fake payment
+reviews
+admin route to create products
+
+Important lesson:
+Software is composition.
+Cracked developers connect simple systems cleanly.
+
+Why it hooks you:
+This is where you feel your growth from the first day.
+
+Best stack for this 10-day run
+
+Use this for all 10 unless we intentionally switch:
+
+Python
+FastAPI
+Pydantic
+SQLAlchemy later if needed
+start with in-memory or SQLite
+Postman or Swagger docs for testing
+simple project folder structure
+
+For the first few days, we can even do:
+
+pure Python classes first
+then expose them via FastAPI
+
+That gives you both:
+
+programming fundamentals
+backend API confidence
+What each project is secretly training
+
+This is the real curriculum underneath:
+
+Bank Vault API → correctness
+Auth Fortress → security
+Dungeon Inventory → domain modeling
+Mini Amazon Cart → workflow/state
+Payment Trap → idempotency/failure design
+Ticket Wars → concurrency/resource conflicts
+Quest Board → clean product CRUD
+Notification Reactor → async/event-driven thinking
+Review Arena → constraints and aggregation
+Mini Marketplace → system composition
+
+This is why this sequence is strong.
+It is not random.
+It builds backend instincts layer by layer.
+
+How I want you to use this with me
+
+When you come back for a project, ask like this:
+
+“Let’s do Day 1 — Bank Vault API. Give me the exact problem statement, features, folder structure, and starter skeleton. Don’t give full solution unless I ask.”
+
+Then I’ll help you in the best possible way:
+
+first define scope
+then give models/routes/functions
+then let you code
+then review your code
+then improve it like an engineer
+
+That back-and-forth is where the real learning happens.
+
+The most fun order if you want maximum addiction
+
+If you want pure excitement, do them in this order instead:
+
+Dungeon Inventory
+Bank Vault API
+Auth Fortress
+Mini Amazon Cart
+Ticket Wars
+Payment Trap
+Quest Board
+Notification Reactor
+Review Arena
+Mini Marketplace
+
+This order is slightly more fun emotionally.
+
+My recommendation
+
+Do this exact order:
+
+Recommended order
+Bank Vault API
+Auth Fortress
+Dungeon Inventory
+Mini Amazon Cart
+Payment Trap
+Ticket Wars
+Quest Board
+Notification Reactor
+Review Arena
+Mini Marketplace
+
+Why:
+
+starts with pure programming clarity
+then real backend basics
+then fun modeling
+then ecommerce core
+then advanced backend ideas
+then full composition
+One more thing
+
+To become cracked, do not just “finish” each project.
+
+At the end of each one, ask:
+
+what assumptions did I make?
+what edge case did I miss?
+what would break in production?
+what would I refactor if this grew 10x?
+
+That is how developers level up fast.
+
+Start with Day 1: Bank Vault API.
