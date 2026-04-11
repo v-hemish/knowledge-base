@@ -31,4 +31,4 @@ class TaskService:
             raise HTTPException(status_code = 404, detail = "Task not found to retrieve")
         return task
 
-        
+
