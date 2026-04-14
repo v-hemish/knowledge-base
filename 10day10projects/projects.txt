@@ -1,0 +1,212 @@
+The simple-to-hard curve
+Day 1 — Inventory API for a Potion Shop
+
+This is your easiest project. Just build:
+
+create item
+list items
+update stock
+delete item
+
+Learn first:
+
+FastAPI route handlers
+request and response schemas
+Pydantic validation
+one database table
+basic CRUD
+
+Watch/read first:
+
+a FastAPI crash course for a quick overview, then the official FastAPI tutorial.
+
+Why this first:
+You only need to understand HTTP + validation + DB write/read. No auth, no relationships, no tricky logic yet.
+
+Day 2 — Quest Log API
+
+Now make it slightly more interesting:
+
+users
+quests
+mark quest complete
+filter by completed / pending
+
+Learn first:
+
+SQLAlchemy models
+one-to-many relationships
+select() queries in SQLAlchemy 2.x
+separating models and schemas
+simple app structure across files
+
+Read first:
+
+SQLAlchemy Unified Tutorial and FastAPI’s Bigger Applications guide.
+
+Why this next:
+You move from one table to connected data, which is where backend work starts becoming real.
+
+Day 3 — Secret URL Vault
+
+Build a URL shortener:
+
+create short link
+redirect
+count clicks
+list top links
+
+Learn first:
+
+service layer vs route layer
+response shaping
+timestamps
+simple analytics queries
+first real tests with FastAPI TestClient
+
+Read first:
+
+FastAPI testing docs and pytest fixtures.
+
+Why here:
+Still fun and small, but now you start thinking beyond CRUD.
+
+Day 4 — Arena Booking API
+
+Build a backend for booking practice courts, game rooms, or interview slots:
+
+create slots
+book slot
+cancel slot
+prevent double booking
+
+Learn first:
+
+transactions
+uniqueness constraints
+race-condition mindset
+migrations with Alembic
+
+Read first:
+
+Alembic tutorial and SQLAlchemy querying docs.
+
+Why here:
+This is the first time backend correctness really matters.
+You stop thinking, “Can I save data?” and start thinking, “Can I keep data valid under pressure?”
+
+Day 5 — Guild Board API
+
+Now build a mini Trello/Jira backend:
+
+signup/login
+workspaces
+boards/projects
+tasks
+comments
+task assignment
+status changes
+
+Learn first:
+
+authentication
+JWT
+current-user dependency
+authorization and roles
+thinner routes, cleaner services
+
+Read first:
+
+FastAPI security docs.
+
+Why here:
+This is the point where your backend starts to look like a real SaaS product.
+
+Day 6 — Tavern Chat API
+
+Build a real-time chat backend:
+
+rooms
+join room
+send messages
+save messages
+fetch room history
+
+Learn first:
+
+HTTP vs WebSockets
+async mental model
+connection manager pattern
+persistence for chat history
+
+Read first:
+
+FastAPI WebSocket docs, then a focused chat tutorial if needed.
+
+Why here:
+This teaches a new backend mode: not just request/response, but live stateful communication.
+
+Day 7 — Final Boss: Major Backend
+
+Now build one proper app that combines everything.
+
+Pick one:
+
+mini SaaS project manager
+startup CRM
+event platform
+creator/content backend
+habit/gameified productivity backend
+
+It should include:
+
+auth
+multiple models
+relationships
+migrations
+tests
+Docker
+clean folder structure
+at least one advanced feature like chat, booking logic, or file processing
+
+This last step is where you prove you can combine everything FastAPI’s docs cover across bigger applications, security, testing, and Docker, together with SQLAlchemy relationships and Alembic migrations.
+
+The learning rule before each day
+
+Before coding, do only this:
+
+20–30 min video
+20–30 min official docs
+then build the whole thing yourself
+
+Use videos for momentum, and docs for truth. FastAPI’s tutorial is explicitly step-by-step and designed to build topic by topic, while SQLAlchemy’s Unified Tutorial is the recommended starting point for 2.0-style ORM usage.
+
+Best video order
+
+Keep it minimal:
+
+FastAPI crash course for overview.
+FastAPI + SQLAlchemy + Alembic + Postgres setup.
+JWT auth with FastAPI.
+WebSocket chat with FastAPI.
+What you’ll be able to do by the end
+
+If you actually build these in order, you should be able to:
+
+design database-backed APIs
+structure a backend beyond one file
+handle auth and protected routes
+write migrations
+test endpoints cleanly with fixtures
+containerize the app
+add real-time or workflow-heavy features
+
+Those are exactly the kinds of concerns covered across FastAPI’s official tutorial, bigger-app structure, security, testing, and Docker guides, plus SQLAlchemy 2.x and Alembic’s recommended tutorials.
+
+My honest recommendation for the best difficulty curve is:
+
+Potion Shop → Quest Log → URL Shortener → Booking API → Guild Board → Tavern Chat → Final SaaS Backend
+
+That starts dead simple and ends at “I can build a major backend app.”
+
+I can now turn this into a clean 7-day plan with exact endpoints, DB models, and folder structure for each day.
