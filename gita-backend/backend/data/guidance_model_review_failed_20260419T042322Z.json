@@ -1,0 +1,49 @@
+{
+  "schema": "guidance_eval_capture_v2",
+  "captured_at": "2026-04-19T04:23:22.735468+00:00",
+  "queries_path": "/Users/hemishveeraboina/Desktop/knowledge-base/gita-backend/backend/data/guidance_review_queries.json",
+  "items": [
+    {
+      "id": "burnout",
+      "input": "My job never ends and I obsess over metrics until I feel burned out.",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 15
+    },
+    {
+      "id": "discipline",
+      "input": "I struggle with discipline and self-sabotage when building habits.",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 0
+    },
+    {
+      "id": "duty_outcomes",
+      "input": "I must act on my duty but I cannot control how it will turn out.",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 0
+    },
+    {
+      "id": "surrender",
+      "input": "I want to surrender my anxiety and take refuge in trust in God.",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 0
+    },
+    {
+      "id": "moral_conflict",
+      "input": "Two people I love want opposite things; I fear making the wrong choice morally.",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 0
+    },
+    {
+      "id": "distress",
+      "input": "I feel depressed and empty most days. What can I hold onto?",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 0
+    },
+    {
+      "id": "grief",
+      "input": "After a loss I keep replaying what I should have done and feel numb.",
+      "error": "<urlopen error [Errno 61] Connection refused>",
+      "client_wall_ms": 0
+    }
+  ]
+}

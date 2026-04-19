@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "description": "Starter hand-built prompts (~10) for retrieval eval against the MVP seed corpus. Expand toward ~120 cases; keep citation_key labels aligned with your DB.",
+  "cases": [
+    {
+      "id": "eval-001-grief",
+      "user_query": "I feel heavy sorrow and cannot let go of outcomes I cannot control.",
+      "acceptable_citations": ["2.47", "6.5"],
+      "misleading_citations": ["18.66"],
+      "notes": "Non-attachment to fruits of action; self-uplift vs despair.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-002-fear",
+      "user_query": "I am anxious and afraid of what will happen next; how do I steady myself?",
+      "acceptable_citations": ["18.66", "6.5"],
+      "misleading_citations": ["2.47"],
+      "notes": "Seed 18.66 mentions fear explicitly; 6.5 on self as friend/enemy.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-003-work-stress",
+      "user_query": "Work demands feel endless; I obsess over results and burn out.",
+      "acceptable_citations": ["2.47"],
+      "misleading_citations": ["18.66"],
+      "notes": "Karma yoga / action without clinging to fruits.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-004-anger",
+      "user_query": "I swing between feeling like my own worst critic and blaming others.",
+      "acceptable_citations": ["6.5"],
+      "misleading_citations": ["2.47"],
+      "notes": "Friend/enemy self framing.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-005-failure",
+      "user_query": "I keep falling short and want to lift myself without collapsing.",
+      "acceptable_citations": ["6.5", "2.47"],
+      "misleading_citations": ["18.66"],
+      "notes": "Self-uplift verse; discipline theme.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-006-discipline",
+      "user_query": "How do I build steady self-discipline instead of self-sabotage?",
+      "acceptable_citations": ["6.5"],
+      "misleading_citations": ["18.66"],
+      "notes": "Theme tags include discipline on 6.5 seed.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-007-jealousy",
+      "user_query": "Envy makes me see others as enemies and myself as small.",
+      "acceptable_citations": ["6.5"],
+      "misleading_citations": ["2.47"],
+      "notes": "Friend/enemy self language.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-008-purpose",
+      "user_query": "What is my duty when I must act but cannot control how things turn out?",
+      "acceptable_citations": ["2.47"],
+      "misleading_citations": ["6.5"],
+      "notes": "Rights to action vs fruits.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-009-moral-conflict",
+      "user_query": "I face a moral tug-of-war between competing obligations and fear choosing wrong.",
+      "acceptable_citations": ["2.47", "18.66"],
+      "misleading_citations": ["6.5"],
+      "notes": "Duty vs surrender framing in small corpus.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    },
+    {
+      "id": "eval-010-family-tension",
+      "user_query": "Family conflict makes me feel alone; I need to steady myself without degrading myself.",
+      "acceptable_citations": ["6.5", "2.47"],
+      "misleading_citations": ["18.66"],
+      "notes": "Self as friend/enemy; non-attachment to outcomes in relationships.",
+      "explanation_grade": null,
+      "manual_review_notes": null
+    }
+  ]
+}

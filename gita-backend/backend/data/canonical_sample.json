@@ -1,0 +1,39 @@
+{
+  "verses": [
+    {
+      "chapter": 2,
+      "verse": 47,
+      "citation_key": "2.47",
+      "sanskrit": "[SEED] कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",
+      "transliteration": "[SEED] karmaṇy-evādhikāras te mā phaleṣu kadācana",
+      "translation": "[SEED] You have a right to action alone, never to its fruits; let not the fruits of action be your motive, nor let your attachment be to inaction.",
+      "theme_tags": ["karma", "non-attachment", "duty"],
+      "situation_tags": ["arjuna's doubt", "battlefield counsel"],
+      "use_with_care_tags": ["psychology-adjacent framing"],
+      "translation_source": "MVP placeholder — replace with licensed text."
+    },
+    {
+      "chapter": 6,
+      "verse": 5,
+      "citation_key": "6.5",
+      "sanskrit": "[SEED] उद्धरेदात्मनात्मानं नात्मानमवसादयेत् ।",
+      "transliteration": "[SEED] uddhared ātmanātmānaṃ nātmānam avasādayet",
+      "translation": "[SEED] One should lift oneself by oneself; do not degrade oneself — for the self is one's own friend and one's own enemy.",
+      "theme_tags": ["self-mastery", "discipline"],
+      "situation_tags": ["yoga instruction"],
+      "use_with_care_tags": [],
+      "translation_source": "MVP placeholder — replace with licensed text."
+    },
+    {
+      "chapter": 18,
+      "verse": 66,
+      "citation_key": "18.66",
+      "sanskrit": "[SEED] सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज ।",
+      "transliteration": "[SEED] sarva-dharmān parityajya mām ekaṃ śaraṇaṃ vraja",
+      "translation": "[SEED] Abandon all varieties of religion and simply surrender unto me. I shall deliver you from all sinful reactions; do not fear.",
+      "theme_tags": ["surrender", "grace"],
+      "situation_tags": ["concluding instruction"],
+      "use_with_care_tags": ["theological sensitivity", "translation varies widely"]
+    }
+  ]
+}

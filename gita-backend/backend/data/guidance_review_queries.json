@@ -1,0 +1,13 @@
+{
+  "schema": "guidance_review_queries_v1",
+  "description": "Fixed user prompts for manual quality review or re-capture via scripts/capture_guidance_eval_run.py.",
+  "items": [
+    {"id": "burnout", "query": "My job never ends and I obsess over metrics until I feel burned out."},
+    {"id": "discipline", "query": "I struggle with discipline and self-sabotage when building habits."},
+    {"id": "duty_outcomes", "query": "I must act on my duty but I cannot control how it will turn out."},
+    {"id": "surrender", "query": "I want to surrender my anxiety and take refuge in trust in God."},
+    {"id": "moral_conflict", "query": "Two people I love want opposite things; I fear making the wrong choice morally."},
+    {"id": "distress", "query": "I feel depressed and empty most days. What can I hold onto?"},
+    {"id": "grief", "query": "After a loss I keep replaying what I should have done and feel numb."}
+  ]
+}

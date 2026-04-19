@@ -1,0 +1,12 @@
+Project rules:
+- This is a retrieval-first scripture guidance backend, not a generic chatbot.
+- Canonical verse text must come only from the internal dataset / DB.
+- Never let the LLM invent, paraphrase, or mutate verse text.
+- Retrieval happens before generation.
+- Return verse cards first, then stream explanation.
+- Prefer simple local infrastructure: FastAPI, SQLite, FTS5, local embeddings, Ollama.
+- No unnecessary infra like Redis, Postgres, Kafka, Celery, or vector DBs in MVP.
+- Keep modules small, typed, and testable.
+- Add tests for every meaningful behavior change.
+- Favor idempotent scripts and deterministic response assembly.
+- Respect theological tone: grounded, careful, non-performative, non-persona-based.
