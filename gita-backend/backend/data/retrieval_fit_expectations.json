@@ -1,0 +1,45 @@
+[
+  {
+    "id": "effort_vs_outcomes",
+    "theme_family": "effort_vs_results_burnout",
+    "query": "I work hard but feel crushed when results do not match my effort",
+    "acceptable_top1_citations": ["2.47", "18.48", "3.19", "11.55", "2.14"]
+  },
+  {
+    "id": "discipline_self_sabotage",
+    "theme_family": "discipline_self_mastery",
+    "query": "I struggle with discipline and self-sabotage; my mind is unsteady; yoga says lift the self by the self",
+    "acceptable_top1_citations": ["6.5", "6.6", "6.26", "6.35", "6.20", "6.29", "6.33", "17.3", "18.42"]
+  },
+  {
+    "id": "surrender_refuge",
+    "theme_family": "surrender_trust_god",
+    "query": "I want to surrender my fear and take refuge in God rather than white-knuckling everything",
+    "acceptable_top1_citations": ["18.66", "18.61", "18.62", "9.22", "12.6", "12.7"]
+  },
+  {
+    "id": "moral_conflict",
+    "theme_family": "moral_conflict_obligations",
+    "query": "Two people I love expect opposite things; I fear choosing the wrong path morally regarding duty",
+    "acceptable_top1_citations": ["2.47", "6.5", "18.48", "3.35", "18.63", "2.7"],
+    "forbidden_top1_citations": ["18.66"]
+  },
+  {
+    "id": "grief_regret",
+    "theme_family": "grief_regret_guilt",
+    "query": "After a loss I keep replaying what I should have done; mourning and grief over the past",
+    "acceptable_top1_citations": ["2.47", "6.5", "2.13", "2.14", "5.20", "2.27", "6.26"]
+  },
+  {
+    "id": "distress_depression",
+    "theme_family": "distress_emptiness",
+    "query": "I feel depressed and empty most days; what can steady my mind and bring peace",
+    "acceptable_top1_citations": ["6.5", "2.47", "12.12", "2.14", "18.54", "15.15", "11.48", "18.64"]
+  },
+  {
+    "id": "burnout_metrics",
+    "theme_family": "effort_vs_results_burnout",
+    "query": "I burn out from obsessing over workplace KPIs and metrics; I fixate on results even when I want to care only about doing my duty and right action.",
+    "acceptable_top1_citations": ["2.47", "18.48", "3.19", "2.14", "2.11", "3.30"]
+  }
+]

@@ -21,12 +21,13 @@ def test_guidance_stream_deadline_emits_fallback(
     tmp_path,
     make_verse_input,
 ) -> None:
-    """Wall-clock ``OLLAMA_GENERATION_DEADLINE_S`` cancels a hung Ollama stream."""
+    """Wall-clock ``OPENAI_GENERATION_DEADLINE_S`` cancels a hung generation stream."""
     db = tmp_path / "deadline.db"
     monkeypatch.setenv("DATABASE_PATH", str(db))
     monkeypatch.setenv("SEMANTIC_RERANK_ENABLED", "false")
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
     # Settings floor is 5s; sleep longer than deadline so asyncio.timeout fires.
-    monkeypatch.setenv("OLLAMA_GENERATION_DEADLINE_S", "5")
+    monkeypatch.setenv("OPENAI_GENERATION_DEADLINE_S", "5")
     get_settings.cache_clear()
 
     init_schema(connect(get_settings().resolved_database_path()))
@@ -38,7 +39,7 @@ def test_guidance_stream_deadline_emits_fallback(
         await asyncio.sleep(6)
         yield "never"
 
-    monkeypatch.setattr("app.services.guidance_service.stream_ollama_chat", _slow)
+    monkeypatch.setattr("app.services.guidance_service.stream_openai_chat", _slow)
 
     client = TestClient(create_app())
     with client.stream("POST", "/api/v1/guidance/stream", json={"query": "deadlinetoken"}) as resp:
@@ -47,7 +48,7 @@ def test_guidance_stream_deadline_emits_fallback(
 
     events = [json.loads(ln.removeprefix("data: ")) for ln in text.splitlines() if ln.startswith("data: ")]
     err = next(e for e in events if e["event"] == "error")
-    assert err["data"]["code"] == "ollama_deadline"
+    assert err["data"]["code"] == "openai_deadline"
     assert err["data"].get("fallback_used") is True
     assert events[-1]["event"] == "completed"
 
@@ -55,7 +56,7 @@ def test_guidance_stream_deadline_emits_fallback(
 def test_guidance_rate_limit_retrieve(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
     monkeypatch.setenv("DATABASE_PATH", str(tmp_path / "rl.db"))
     monkeypatch.setenv("SEMANTIC_RERANK_ENABLED", "false")
-    monkeypatch.setenv("GUIDANCE_RATE_LIMIT_PER_MINUTE", "2")
+    monkeypatch.setenv("GUIDANCE_RETRIEVE_RATE_LIMIT_PER_MINUTE", "2")
     get_settings.cache_clear()
 
     init_schema(connect(get_settings().resolved_database_path()))

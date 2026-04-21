@@ -44,6 +44,18 @@ def test_citation_clarification_burnout_mismatch() -> None:
         surrender_explicit=False,
         action_without_fruit=False,
         faith_grace_language=False,
+        hedonic_compulsion=False,
+        grief_regret=False,
+        shame_past=False,
+        comparison=False,
+        spiritual_restart=False,
+        effort_results=False,
+        fear_of_failure=False,
+        uncertain_outcome=False,
+        invisible_effort=False,
+        self_worth_from_achievement=False,
+        gentle_discipline=False,
+        comfort_over_duty=False,
     )
     text = "…metrics. See 6.5."
     s = citation_clarification_suffix(
@@ -57,7 +69,27 @@ def test_citation_clarification_burnout_mismatch() -> None:
 
 
 def test_citation_clarification_skips_when_primary_matches() -> None:
-    prof = QueryProfile(True, True, False, False, False, False, False)
+    prof = QueryProfile(
+        True,
+        True,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+    )
     assert (
         citation_clarification_suffix(
             "… See 2.47.",

@@ -4,7 +4,8 @@ Project rules:
 - Never let the LLM invent, paraphrase, or mutate verse text.
 - Retrieval happens before generation.
 - Return verse cards first, then stream explanation.
-- Prefer simple local infrastructure: FastAPI, SQLite, FTS5, local embeddings, Ollama.
+- Prefer simple local infrastructure: FastAPI, SQLite, FTS5, local embeddings.
+- Generation runs against OpenAI (gpt-5-mini); verse text is never produced by the model.
 - No unnecessary infra like Redis, Postgres, Kafka, Celery, or vector DBs in MVP.
 - Keep modules small, typed, and testable.
 - Add tests for every meaningful behavior change.

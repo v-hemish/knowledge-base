@@ -43,7 +43,13 @@ class InMemorySlidingRateLimiter:
 
 
 _guidance_limiter = InMemorySlidingRateLimiter()
+_retrieve_limiter = InMemorySlidingRateLimiter()
 
 
 def guidance_rate_limiter() -> InMemorySlidingRateLimiter:
     return _guidance_limiter
+
+
+def guidance_retrieve_rate_limiter() -> InMemorySlidingRateLimiter:
+    """Separate bucket for cheap DB-only retrieve (practice UI can burst)."""
+    return _retrieve_limiter

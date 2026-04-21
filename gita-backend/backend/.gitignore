@@ -21,6 +21,11 @@ build/
 
 # Local data & env
 .env
+# Guidance / review captures (regenerate with scripts/capture_guidance_eval_run.py, etc.)
+data/guidance_model_review*.json
+data/guidance_review_queries_capture*.json
+data/guidance_life_theme_review_capture.json
+data/**/*_routing_debug.txt
 data/*.db
 data/*.db-journal
 data/*.npz

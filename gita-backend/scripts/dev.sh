@@ -35,6 +35,13 @@ if [[ ! -d "${ROOT}/backend/.venv" ]]; then
   (cd "${ROOT}/backend" && uv sync)
 fi
 
+if [[ "${SKIP_SEED:-}" != "1" ]]; then
+  echo "==> Seeding SQLite (idempotent)…"
+  (cd "${ROOT}/backend" && uv run python scripts/seed_database.py) || exit 1
+else
+  echo "==> SKIP_SEED=1: skipping database seed"
+fi
+
 echo "==> Backend  http://127.0.0.1:8000"
 (cd "${ROOT}/backend" && exec uv run uvicorn app.main:app --reload --host 127.0.0.1 --port 8000) &
 
@@ -43,7 +50,10 @@ if [[ ! -d "${ROOT}/gita-frontend/node_modules" ]]; then
   (cd "${ROOT}/gita-frontend" && "${FRONTEND_PM}" install)
 fi
 
-echo "==> Frontend http://localhost:3000 (${FRONTEND_PM})"
+# Browser uses same-origin `/api/backend/*` → FastAPI (works for localhost and LAN IPs like 10.x).
+# Do not set NEXT_PUBLIC_API_BASE_URL here unless you need direct browser→8000 (same machine only).
+export BACKEND_URL="${BACKEND_URL:-http://127.0.0.1:8000}"
+echo "==> Frontend http://localhost:3000 (${FRONTEND_PM}) · API proxy → ${BACKEND_URL}"
 (cd "${ROOT}/gita-frontend" && exec "${FRONTEND_PM}" run dev) &
 
 wait

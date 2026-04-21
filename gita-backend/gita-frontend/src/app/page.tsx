@@ -1,5 +1,5 @@
-import { GuidanceApp } from "@/components/guidance/GuidanceApp";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <GuidanceApp />;
+  redirect("/today");
 }

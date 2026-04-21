@@ -39,67 +39,91 @@ class Settings(BaseSettings):
     )
     semantic_rerank_enabled: bool = Field(default=True, validation_alias="SEMANTIC_RERANK_ENABLED")
 
-    ollama_base_url: str = Field(default="http://127.0.0.1:11434", validation_alias="OLLAMA_BASE_URL")
-    ollama_model: str = Field(default="qwen2.5:14b", validation_alias="OLLAMA_MODEL")
-    ollama_connect_timeout_s: float = Field(
-        default=5.0,
-        ge=0.5,
-        le=120.0,
-        validation_alias="OLLAMA_CONNECT_TIMEOUT_S",
+    openai_api_key: str = Field(
+        default="",
+        validation_alias="OPENAI_API_KEY",
+        description="OpenAI API key. Required for guidance streaming. Lives in backend/.env (gitignored).",
     )
-    ollama_read_timeout_s: float = Field(
-        default=120.0,
-        ge=5.0,
-        le=900.0,
-        validation_alias="OLLAMA_READ_TIMEOUT_S",
+    openai_base_url: str = Field(
+        default="https://api.openai.com/v1",
+        validation_alias="OPENAI_BASE_URL",
+        description="OpenAI Chat Completions base URL (override for compatible proxies).",
     )
-    ollama_write_timeout_s: float = Field(
-        default=60.0,
-        ge=2.0,
-        le=300.0,
-        validation_alias="OLLAMA_WRITE_TIMEOUT_S",
+    openai_model: str = Field(
+        default="gpt-5-mini",
+        validation_alias="OPENAI_MODEL",
+        description=(
+            "Preferred OpenAI model id for guidance generation (default ``gpt-5-mini``). "
+            "Use rollout settings below for staged promotion."
+        ),
     )
-    ollama_generation_deadline_s: float = Field(
+    openai_fallback_model: str = Field(
+        default="gpt-4o-mini",
+        validation_alias="OPENAI_FALLBACK_MODEL",
+        description=(
+            "Backup OpenAI model id used when staged rollout routes a request away from OPENAI_MODEL."
+        ),
+    )
+    guidance_primary_model_rollout_percent: int = Field(
+        default=100,
+        ge=0,
+        le=100,
+        validation_alias="GUIDANCE_PRIMARY_MODEL_ROLLOUT_PERCENT",
+        description=(
+            "Percent of requests routed to OPENAI_MODEL (stable hash by query text). "
+            "Remainder routes to OPENAI_FALLBACK_MODEL for staged rollout."
+        ),
+    )
+    openai_generation_deadline_s: float = Field(
         default=64.0,
         ge=5.0,
         le=900.0,
-        validation_alias="OLLAMA_GENERATION_DEADLINE_S",
-        description="Wall-clock cap for one streamed explanation (asyncio timeout around Ollama).",
+        validation_alias="OPENAI_GENERATION_DEADLINE_S",
+        description="Wall-clock cap for one streamed explanation (asyncio timeout around OpenAI).",
     )
-    ollama_temperature: float = Field(
-        default=0.12,
+    openai_temperature: float = Field(
+        default=0.2,
         ge=0.0,
-        le=1.5,
-        validation_alias="OLLAMA_TEMPERATURE",
-        description="Low temperature for stable, concise decoding (latency-friendly).",
+        le=2.0,
+        validation_alias="OPENAI_TEMPERATURE",
+        description="Decoding temperature passed to OpenAI (kept low for stable, concise guidance).",
     )
-    ollama_top_p: float = Field(
-        default=0.82,
+    openai_top_p: float = Field(
+        default=0.9,
         ge=0.1,
         le=1.0,
-        validation_alias="OLLAMA_TOP_P",
+        validation_alias="OPENAI_TOP_P",
     )
-    ollama_repeat_penalty: float = Field(
-        default=1.15,
-        ge=1.0,
-        le=2.0,
-        validation_alias="OLLAMA_REPEAT_PENALTY",
-    )
-    ollama_num_predict: int = Field(
-        default=120,
+    openai_max_completion_tokens: int = Field(
+        default=1024,
         ge=32,
-        le=512,
-        validation_alias="OLLAMA_NUM_PREDICT",
-        description="Decode cap (tokens); keep aligned with validation max words for lower latency.",
-    )
-    ollama_keep_alive: str = Field(
-        default="30m",
-        validation_alias="OLLAMA_KEEP_ALIVE",
+        le=8192,
+        validation_alias="OPENAI_MAX_COMPLETION_TOKENS",
         description=(
-            "Ollama ``keep_alive`` directive (e.g. ``30m``, ``2h``, ``-1`` for always). Sent with each "
-            "/api/chat request so the model stays resident between calls and the first-token latency "
-            "does not include model reload time. Set to empty string to omit."
+            "Mapped to the OpenAI ``max_completion_tokens`` field (GPT-5 family). On reasoning "
+            "models this budget is consumed by *internal reasoning* before any visible content "
+            "token is emitted. The default (1024) leaves enough headroom for a short guidance "
+            "answer after minimal reasoning; raise to 2048+ if you switch ``reasoning_effort`` "
+            "away from ``minimal`` or use a larger reasoning model."
         ),
+    )
+    openai_connect_timeout_s: float = Field(
+        default=10.0,
+        ge=0.5,
+        le=120.0,
+        validation_alias="OPENAI_CONNECT_TIMEOUT_S",
+    )
+    openai_read_timeout_s: float = Field(
+        default=120.0,
+        ge=5.0,
+        le=900.0,
+        validation_alias="OPENAI_READ_TIMEOUT_S",
+    )
+    openai_write_timeout_s: float = Field(
+        default=60.0,
+        ge=2.0,
+        le=300.0,
+        validation_alias="OPENAI_WRITE_TIMEOUT_S",
     )
 
     guidance_generation_max_verses: int = Field(
@@ -107,7 +131,10 @@ class Settings(BaseSettings):
         ge=1,
         le=2,
         validation_alias="GUIDANCE_GENERATION_MAX_VERSES",
-        description="Verses embedded in the Ollama prompt (retrieval may still return more cards to the client).",
+        description=(
+            "Verses embedded in the generation prompt (MAIN + optional supporting). "
+            "Retrieval may still return more verse cards to the client than this budget."
+        ),
     )
     guidance_burnout_generation_max_verses: int = Field(
         default=1,
@@ -134,7 +161,7 @@ class Settings(BaseSettings):
         ge=1,
         le=8,
         validation_alias="GUIDANCE_VALIDATION_MAX_RETRIES",
-        description="Ollama regeneration attempts when post-generation validation fails (1 = no retry).",
+        description="Regeneration attempts when post-generation validation fails (1 = no retry).",
     )
     guidance_validation_min_words: int = Field(
         default=20,
@@ -162,7 +189,16 @@ class Settings(BaseSettings):
         default=60,
         ge=0,
         validation_alias="GUIDANCE_RATE_LIMIT_PER_MINUTE",
-        description="Per client IP sliding window; 0 disables.",
+        description="Per client IP sliding window for stream + feedback; 0 disables.",
+    )
+    guidance_retrieve_rate_limit_per_minute: int = Field(
+        default=300,
+        ge=0,
+        validation_alias="GUIDANCE_RETRIEVE_RATE_LIMIT_PER_MINUTE",
+        description=(
+            "Separate per-IP cap for POST /guidance/retrieve only (higher default than stream). "
+            "0 disables retrieve rate limiting."
+        ),
     )
     guidance_stream_chunk_delay_s: float = Field(
         default=0.0,
@@ -177,6 +213,14 @@ class Settings(BaseSettings):
         description=(
             "When true, all guidance streams behave like request.eval_debug=true (diagnostics + no generic "
             "fallback masking). Prefer per-request eval_debug for captures."
+        ),
+    )
+    guidance_openai_when_no_verses: bool = Field(
+        default=True,
+        validation_alias="GUIDANCE_OPENAI_WHEN_NO_VERSES",
+        description=(
+            "When retrieval returns no verses, stream a short general OpenAI reflection (still no verse cards). "
+            "Set false to only show the static no-match notice without calling the model."
         ),
     )
     guidance_feedback_log_path: Path | None = Field(
@@ -208,7 +252,12 @@ class Settings(BaseSettings):
     def expand_data_dir(cls, v: str | Path) -> Path:
         return Path(v).expanduser().resolve(strict=False)
 
-    @field_validator("database_path", "guidance_feedback_log_path", mode="before")
+    @field_validator(
+        "database_path",
+        "embeddings_artifact_path",
+        "guidance_feedback_log_path",
+        mode="before",
+    )
     @classmethod
     def empty_str_to_none(cls, v: str | Path | None) -> Path | str | None:
         if v == "" or v is None:
@@ -223,12 +272,12 @@ class Settings(BaseSettings):
             return "INFO"
         return u
 
-    @field_validator("ollama_base_url")
+    @field_validator("openai_base_url")
     @classmethod
-    def validate_ollama_base_url(cls, v: str) -> str:
+    def validate_openai_base_url(cls, v: str) -> str:
         s = (v or "").strip().rstrip("/")
         if not s.startswith(("http://", "https://")):
-            raise ValueError("OLLAMA_BASE_URL must be an absolute http(s) URL")
+            raise ValueError("OPENAI_BASE_URL must be an absolute http(s) URL")
         return s
 
     @field_validator("fts_candidate_limit")

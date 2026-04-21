@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import logging
 import sqlite3
+from dataclasses import replace
 
 from app.core.config import Settings
+from app.llm.query_intent import rank_verses_by_intent_and_fit
+from app.llm.theme_routing import apply_theme_ordered_pins
 from app.retrieval.selection import VerseWithRetrievalMeta
 from app.schemas.guidance_retrieve import (
     ExplanationStatus,
@@ -74,9 +77,36 @@ class AnswerAssemblerService:
             return cached
 
         metas = await self._retrieval.retrieve_with_metadata(conn, query=query, settings=settings)
+        if not metas:
+            out = RetrieveGuidanceResponse(
+                query=query,
+                selected_verses=[],
+                reflection_prompt=None,
+                explanation_status="no_hits",
+            )
+            retrieve_cache_set(cache_key, out)
+            return out
+
+        verses = [m.verse for m in metas]
+        verses = rank_verses_by_intent_and_fit(query, verses)
+        verses = apply_theme_ordered_pins(query, verses)
+        verses = verses[: settings.final_verse_count]
+        meta_by_key = {m.verse.citation_key: m for m in metas}
         cards: list[RetrieveVerseCard] = []
-        for m in metas:
-            v = m.verse
+        for pos, v in enumerate(verses, start=1):
+            m = meta_by_key.get(v.citation_key)
+            if m is None:
+                m = VerseWithRetrievalMeta(
+                    verse=v,
+                    lexical_rank=999,
+                    lexical_retrieval_score=0.0,
+                    matched_by=("theme_canonical",),
+                    semantic_rerank_applied=False,
+                    final_position=pos,
+                    total_lexical_candidates=len(metas),
+                )
+            else:
+                m = replace(m, final_position=pos)
             cards.append(
                 RetrieveVerseCard(
                     citation_key=v.citation_key,

@@ -16,8 +16,12 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Gita guidance",
-  description: "Retrieval-first guidance against your local Gita backend",
+  title: {
+    default: "Gita Path",
+    template: "%s · Gita Path",
+  },
+  description:
+    "One verse each day from the Bhagavad Gita, plus a quiet space to ask questions—answers stay tied to the text you keep here.",
 };
 
 export default function RootLayout({

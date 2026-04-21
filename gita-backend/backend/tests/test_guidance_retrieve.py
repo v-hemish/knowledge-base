@@ -100,6 +100,49 @@ def test_retrieve_rejects_blank_query() -> None:
     assert resp.status_code == 422
 
 
+def test_retrieve_explicit_bhagavad_gita_citation_without_fts_overlap(
+    tmp_path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Practice UI queries ``Bhagavad Gita 2.47``; FTS does not index citation_key, so cite-path must win."""
+    db = tmp_path / "cite.db"
+    monkeypatch.setenv("DATABASE_PATH", str(db))
+    monkeypatch.setenv("SEMANTIC_RERANK_ENABLED", "false")
+    get_settings.cache_clear()
+
+    init_schema(connect(db))
+    engine = make_engine(db)
+    with session_scope(make_session_factory(engine)) as session:
+        ingest_verse_inputs(
+            session,
+            [
+                VerseInput(
+                    chapter=2,
+                    verse=47,
+                    citation_key="2.47",
+                    translation=(
+                        "Plain English line long enough for display checks; "
+                        "deliberately avoids scripture-title tokens in the verse text itself."
+                    ),
+                    sanskrit=None,
+                    transliteration=None,
+                    theme_tags=["duty"],
+                    situation_tags=[],
+                    use_with_care_tags=[],
+                ),
+            ],
+        )
+
+    client = TestClient(create_app())
+    resp = client.post("/api/v1/guidance/retrieve", json={"query": "Bhagavad Gita 2.47"})
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["explanation_status"] == "verses_only"
+    assert len(body["selected_verses"]) >= 1
+    assert body["selected_verses"][0]["citation_key"] == "2.47"
+    assert "Bhagavad" not in body["selected_verses"][0]["translation"]
+
+
 def test_retrieve_no_hits(tmp_path, monkeypatch: pytest.MonkeyPatch) -> None:
     db = tmp_path / "empty.db"
     monkeypatch.setenv("DATABASE_PATH", str(db))

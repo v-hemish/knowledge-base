@@ -2,7 +2,7 @@ import importlib.metadata
 
 from fastapi import APIRouter
 
-from app.api.routes.v1 import guidance, retrieval
+from app.api.routes.v1 import guidance, retrieval, verses
 
 router = APIRouter(tags=["v1"])
 
@@ -18,3 +18,4 @@ def api_version() -> dict[str, str]:
 
 router.include_router(guidance.router)
 router.include_router(retrieval.router)
+router.include_router(verses.router)

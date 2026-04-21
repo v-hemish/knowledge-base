@@ -1,0 +1,332 @@
+{
+  "schema_version": "gita_daily_practice_app_spec_v2",
+  "product_name": "Gita Daily",
+  "product_direction": {
+    "primary_identity": "A daily Bhagavad Gita practice app",
+    "secondary_feature": "Scripture-first chat companion for personal guidance",
+    "core_value": [
+      "Return every day for a verse, reflection, and small practice",
+      "Learn the Gita gradually through verse cards and review",
+      "Use chat only when specific guidance is needed"
+    ]
+  },
+  "gita_basics": {
+    "work_title": "Bhagavad Gita",
+    "format": "18 chapters, traditionally counted as 700 verses",
+    "setting": "Dialogue between Krishna and Arjuna on the battlefield of Kurukshetra",
+    "larger_text": "Part of the Mahabharata, Bhishma Parva",
+    "practical_teaching_axes": [
+      "dharma (duty)",
+      "karma-yoga (action without attachment)",
+      "self-mastery",
+      "equanimity",
+      "bhakti (devotion / surrender)",
+      "knowledge / discernment"
+    ]
+  },
+  "app_information_architecture": {
+    "default_tab": "today",
+    "tabs": [
+      {
+        "key": "today",
+        "label": "Today"
+      },
+      {
+        "key": "learn",
+        "label": "Learn"
+      },
+      {
+        "key": "review",
+        "label": "Review"
+      },
+      {
+        "key": "chat",
+        "label": "Chat"
+      }
+    ]
+  },
+  "screens": {
+    "today": {
+      "purpose": "Daily habit loop",
+      "sections": [
+        "Verse of the Day",
+        "Short meaning",
+        "Reflection question",
+        "One practical takeaway",
+        "Mark today complete",
+        "Continue learning"
+      ]
+    },
+    "learn": {
+      "purpose": "Learn a verse a day",
+      "sections": [
+        "Verse card",
+        "Sanskrit",
+        "Transliteration",
+        "Translation",
+        "Meaning",
+        "Life application",
+        "Save / Learned / Next"
+      ]
+    },
+    "review": {
+      "purpose": "Revisit and retain",
+      "sections": [
+        "Saved verses",
+        "Recently learned",
+        "Review by chapter",
+        "Review by theme"
+      ]
+    },
+    "chat": {
+      "purpose": "Optional guidance companion",
+      "sections": [
+        "Ask a life question",
+        "Receive scripture-grounded guidance",
+        "See retrieved verses",
+        "Save verses from chat"
+      ]
+    }
+  },
+  "daily_habit_loop": [
+    "Open app",
+    "Read Verse of the Day",
+    "Read a short explanation",
+    "Answer or sit with one reflection prompt",
+    "Mark today complete",
+    "Optionally continue into Learn or Chat"
+  ],
+  "starter_verse_pack": [
+    {
+      "citation_key": "2.13",
+      "citation": "Bhagavad Gita 2.13",
+      "theme": [
+        "change",
+        "grief",
+        "continuity of self"
+      ],
+      "sanskrit": "देहिनोऽस्मिन्यथा देहे कौमारं यौवनं जरा। तथा देहान्तरप्राप्तिर्धीरस्तत्र न मुह्यति।।2.13।।",
+      "transliteration": "dehino ’smin yathā dehe kaumāraṁ yauvanaṁ jarā; tathā dehāntara-prāptir dhīras tatra na muhyati.",
+      "translation_plain": "Just as the embodied self passes through childhood, youth, and old age in this life, it also passes on to another state; the steady one is not deluded by this.",
+      "daily_reflection": "What change in life am I resisting as though it should not exist?",
+      "tiny_practice": "Name one change you are facing, then sit with it for one quiet minute without trying to fix it."
+    },
+    {
+      "citation_key": "2.14",
+      "citation": "Bhagavad Gita 2.14",
+      "theme": [
+        "distress",
+        "equanimity",
+        "endurance"
+      ],
+      "sanskrit": "मात्रास्पर्शास्तु कौन्तेय शीतोष्णसुखदुःखदाः। आगमापायिनोऽनित्यास्तांस्तितिक्षस्व भारत।।2.14।।",
+      "transliteration": "mātrā-sparśās tu kaunteya śītoṣṇa-sukha-duḥkha-dāḥ; āgamāpāyino ’nityās tāṁs titikṣasva bhārata.",
+      "translation_plain": "Sensations of heat and cold, pleasure and pain, come and go; they are temporary. Learn to bear them steadily.",
+      "daily_reflection": "What feeling today am I treating as permanent even though it is passing?",
+      "tiny_practice": "When discomfort rises today, say inwardly: this too comes and goes."
+    },
+    {
+      "citation_key": "2.47",
+      "citation": "Bhagavad Gita 2.47",
+      "theme": [
+        "duty",
+        "action",
+        "non-attachment",
+        "burnout"
+      ],
+      "sanskrit": "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि।।2.47।।",
+      "transliteration": "karmaṇy evādhikāras te mā phaleṣu kadācana; mā karma-phala-hetur bhūr mā te saṅgo ’stv akarmaṇi.",
+      "translation_plain": "Your right is to action alone, never to its fruits. Do not make the fruits of action your motive, and do not fall into inaction.",
+      "daily_reflection": "Where am I confusing my worth with the result of my effort?",
+      "tiny_practice": "Choose one task today and do it fully without checking whether it is paying off."
+    },
+    {
+      "citation_key": "3.19",
+      "citation": "Bhagavad Gita 3.19",
+      "theme": [
+        "steady action",
+        "duty",
+        "detachment"
+      ],
+      "sanskrit": "तस्मादसक्तः सततं कार्यं कर्म समाचर। असक्तो ह्याचरन्कर्म परमाप्नोति पूरुषः।।3.19।।",
+      "transliteration": "tasmād asaktaḥ satataṁ kāryaṁ karma samācara; asakto hy ācaran karma param āpnoti pūruṣaḥ.",
+      "translation_plain": "Therefore, always perform the work that ought to be done without attachment; by acting without attachment, a person reaches the highest.",
+      "daily_reflection": "What necessary action am I avoiding because I want certainty first?",
+      "tiny_practice": "Do one needed task today before asking whether you feel like it."
+    },
+    {
+      "citation_key": "3.35",
+      "citation": "Bhagavad Gita 3.35",
+      "theme": [
+        "comparison",
+        "own path",
+        "dharma"
+      ],
+      "sanskrit": "श्रेयान्स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्। स्वधर्मे निधनं श्रेयः परधर्मो भयावहः।।3.35।।",
+      "transliteration": "śreyān sva-dharmo viguṇaḥ para-dharmāt sv-anuṣṭhitāt; sva-dharme nidhanaṁ śreyaḥ para-dharmo bhayāvahaḥ.",
+      "translation_plain": "Better one’s own path, even imperfectly lived, than another’s path done well. Better to live and die in one’s own duty; another’s path is dangerous.",
+      "daily_reflection": "Where am I abandoning my own path because someone else’s seems more impressive?",
+      "tiny_practice": "Write down one responsibility that is truly yours and return to it today."
+    },
+    {
+      "citation_key": "5.12",
+      "citation": "Bhagavad Gita 5.12",
+      "theme": [
+        "peace",
+        "renouncing fruits",
+        "work"
+      ],
+      "sanskrit": "युक्तः कर्मफलं त्यक्त्वा शान्तिमाप्नोति नैष्ठिकीम्। अयुक्तः कामकारेण फले सक्तो निबध्यते।।5.12।।",
+      "transliteration": "yuktaḥ karma-phalaṁ tyaktvā śāntim āpnoti naiṣṭhikīm; ayuktaḥ kāma-kāreṇa phale sakto nibadhyate.",
+      "translation_plain": "The integrated person, giving up attachment to the fruits of action, attains peace. The unsteady person, attached to results and driven by desire, becomes bound.",
+      "daily_reflection": "What desire for recognition or reward is disturbing my peace?",
+      "tiny_practice": "Do one piece of work quietly today without announcing it or measuring its reward."
+    },
+    {
+      "citation_key": "6.5",
+      "citation": "Bhagavad Gita 6.5",
+      "theme": [
+        "self-mastery",
+        "discipline",
+        "anxiety",
+        "self-sabotage"
+      ],
+      "sanskrit": "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्। आत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः।।6.5।।",
+      "transliteration": "uddhared ātmanātmānaṁ nātmānam avasādayet; ātmaiva hy ātmano bandhur ātmaiva ripur ātmanaḥ.",
+      "translation_plain": "Let a person lift oneself by oneself; let one not sink oneself. The self can be one’s friend, and the self can be one’s enemy.",
+      "daily_reflection": "Am I treating myself today like an ally or like an enemy?",
+      "tiny_practice": "Take one small action today that clearly helps your future self."
+    },
+    {
+      "citation_key": "6.6",
+      "citation": "Bhagavad Gita 6.6",
+      "theme": [
+        "mind as friend",
+        "mind as enemy"
+      ],
+      "sanskrit": "बन्धुरात्मात्मनस्तस्य येनात्मैवात्मना जितः। अनात्मनस्तु शत्रुत्वे वर्तेतात्मैव शत्रुवत्।।6.6।।",
+      "transliteration": "bandhur ātmātmanas tasya yenātmaivātmanā jitaḥ; anātmanas tu śatrutve vartetātmaiva śatru-vat.",
+      "translation_plain": "For one who has mastered oneself, the self is a friend; for one who has not, the self behaves like an enemy.",
+      "daily_reflection": "What pattern in me keeps acting like an enemy right now?",
+      "tiny_practice": "Notice one repeating self-defeating pattern today and interrupt it once."
+    },
+    {
+      "citation_key": "6.26",
+      "citation": "Bhagavad Gita 6.26",
+      "theme": [
+        "meditation",
+        "wandering mind",
+        "returning attention"
+      ],
+      "sanskrit": "यतो यतो निश्चरति मनश्चञ्चलमस्थिरम्। ततस्ततो नियम्यैतदात्मन्येव वशं नयेत्।।6.26।।",
+      "transliteration": "yato yato niścarati manaś cañcalam asthiram; tatas tato niyamyaitad ātmany eva vaśaṁ nayet.",
+      "translation_plain": "Wherever the restless, unsteady mind wanders, bring it back under discipline and return it to the self.",
+      "daily_reflection": "Where does my mind go when I am trying to stay steady?",
+      "tiny_practice": "Each time your mind wanders today, bring it back gently once without irritation."
+    },
+    {
+      "citation_key": "12.12",
+      "citation": "Bhagavad Gita 12.12",
+      "theme": [
+        "peace",
+        "practice",
+        "renunciation"
+      ],
+      "sanskrit": "श्रेयो हि ज्ञानमभ्यासाज्ज्ञानाद्ध्यानं विशिष्यते। ध्यानात्कर्मफलत्यागस्त्यागाच्छान्तिरनन्तरम्।।12.12।।",
+      "transliteration": "śreyo hi jñānam abhyāsāj jñānād dhyānaṁ viśiṣyate; dhyānāt karma-phala-tyāgas tyāgāc chāntir anantaram.",
+      "translation_plain": "Knowledge is better than mere practice, meditation is better than knowledge, and giving up the fruits of action is better than meditation; from such renunciation, peace follows immediately.",
+      "daily_reflection": "What would I need to let go of to experience a little more peace today?",
+      "tiny_practice": "Release one small expectation today and notice whether your mind softens."
+    },
+    {
+      "citation_key": "12.13",
+      "citation": "Bhagavad Gita 12.13",
+      "theme": [
+        "compassion",
+        "gentleness",
+        "daily character"
+      ],
+      "sanskrit": "अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च। निर्ममो निरहङ्कारः समदुःखसुखः क्षमी।।12.13।।",
+      "transliteration": "adveṣṭā sarva-bhūtānāṁ maitraḥ karuṇa eva ca; nirmamo nirahaṅkāraḥ sama-duḥkha-sukhaḥ kṣamī.",
+      "translation_plain": "One who has no hatred toward any being, who is friendly and compassionate, free from possessiveness and ego, steady in joy and sorrow, and forgiving—such a person is deeply dear.",
+      "daily_reflection": "What would compassion look like in one small interaction today?",
+      "tiny_practice": "Offer one quiet act of kindness today without needing recognition."
+    },
+    {
+      "citation_key": "18.62",
+      "citation": "Bhagavad Gita 18.62",
+      "theme": [
+        "refuge",
+        "surrender",
+        "peace"
+      ],
+      "sanskrit": "तमेव शरणं गच्छ सर्वभावेन भारत। तत्प्रसादात्परां शान्तिं स्थानं प्राप्स्यसि शाश्वतम्।।18.62।।",
+      "transliteration": "tam eva śaraṇaṁ gaccha sarva-bhāvena bhārata; tat-prasādāt parāṁ śāntiṁ sthānaṁ prāpsyasi śāśvatam.",
+      "translation_plain": "Take refuge in Him with your whole being. By His grace you shall find supreme peace and the lasting state.",
+      "daily_reflection": "What am I still holding back from trust?",
+      "tiny_practice": "In one quiet moment today, inwardly hand one burden over instead of tightening around it."
+    },
+    {
+      "citation_key": "18.66",
+      "citation": "Bhagavad Gita 18.66",
+      "theme": [
+        "surrender",
+        "grace",
+        "do not fear"
+      ],
+      "sanskrit": "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज। अहं त्वां सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः।।18.66।।",
+      "transliteration": "sarva-dharmān parityajya mām ekaṁ śaraṇaṁ vraja; ahaṁ tvāṁ sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ.",
+      "translation_plain": "Abandon all limited supports and take refuge in Me alone. I will free you; do not grieve.",
+      "daily_reflection": "What fear would soften if I truly believed I did not have to carry everything alone?",
+      "tiny_practice": "End the day by naming one worry and consciously releasing it."
+    }
+  ],
+  "data_model": {
+    "verse_of_the_day": {
+      "date": "YYYY-MM-DD",
+      "citation_key": "string",
+      "citation": "string",
+      "sanskrit": "string",
+      "transliteration": "string",
+      "translation_plain": "string",
+      "theme": [
+        "string"
+      ],
+      "reflection_prompt": "string",
+      "tiny_practice": "string",
+      "chapter_number": "integer",
+      "verse_number": "integer"
+    },
+    "learned_verse": {
+      "citation_key": "string",
+      "saved_at": "timestamp",
+      "status": "new | learning | learned",
+      "review_count": "integer",
+      "last_reviewed_at": "timestamp|null"
+    },
+    "user_daily_progress": {
+      "date": "YYYY-MM-DD",
+      "opened_today": "boolean",
+      "read_verse": "boolean",
+      "completed_reflection": "boolean",
+      "continued_learning": "boolean",
+      "used_chat": "boolean"
+    }
+  },
+  "mvp_scope": {
+    "build_now": [
+      "Today screen",
+      "Learn screen with elegant flashcard flow",
+      "Review screen for saved verses",
+      "Chat as secondary tab",
+      "Starter verse pack using carefully chosen canonical verses"
+    ],
+    "later": [
+      "Audio recitation",
+      "Memorization mode",
+      "Streaks / gentle progress",
+      "Chapter journeys",
+      "Spaced repetition"
+    ]
+  }
+}

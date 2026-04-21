@@ -12,7 +12,7 @@ from app.llm.stream_buffer import (
     normalize_primary_citation_label,
     polish_guidance_full_text,
     salvage_missing_primary_citation,
-    stream_ollama_chat_phrased,
+    stream_chat_phrased,
 )
 
 
@@ -135,7 +135,7 @@ async def test_phrased_stream_coalesces_tokens() -> None:
         yield "Next"
 
     parts: list[str] = []
-    async for c in stream_ollama_chat_phrased(upstream()):
+    async for c in stream_chat_phrased(upstream()):
         parts.append(c)
     assert "Hello world. " in "".join(parts)
     assert any("Next" in p for p in parts)
@@ -302,6 +302,71 @@ def test_polish_repairs_in_chapter_dot_followed_by_text() -> None:
     )
     assert "in 2.Focus" not in polished
     assert "in 2.47 Focus" in polished
+
+
+def test_polish_breaks_emdash_truncated_inline_citation_into_sentence() -> None:
+    """Em-dash + truncated chapter ref (``not the fruit—2.Act``) must close into a new sentence;
+    the canonical ``Bhagavad Gita 2.47`` label is preserved at end."""
+    raw = (
+        "The emphasis here is on performing your duty without claiming its results, "
+        "holding action itself as your rightful concern and not the fruit—2.Act with "
+        "presence and integrity, releasing fixation on outcomes (Bhagavad Gita 2.47)."
+    )
+    polished = polish_guidance_full_text(
+        raw,
+        allowed_citation_keys={"2.47"},
+        primary_citation_key="2.47",
+    )
+    assert "—2." not in polished
+    assert "—2.Act" not in polished
+    assert "2.Act" not in polished
+    assert "fruit. Act with presence" in polished
+    assert "Bhagavad Gita 2.47" in polished
+
+
+def test_polish_breaks_emdash_truncated_inline_citation_18_into_sentence() -> None:
+    """``deliverance—18.Let this stand`` must become ``deliverance. Let this stand`` with the
+    structured 18.66 label preserved at end (surrender prompt fix)."""
+    raw = (
+        "The clearest instruction here is to let go of clinging to every path and simply take "
+        "refuge, trusting that surrender brings deliverance—18.Let this plain promise stand as "
+        "a small practice (Bhagavad Gita 18.66)."
+    )
+    polished = polish_guidance_full_text(
+        raw,
+        allowed_citation_keys={"18.66"},
+        primary_citation_key="18.66",
+    )
+    assert "—18." not in polished
+    assert "18.Let" not in polished
+    assert "deliverance. Let this plain promise stand" in polished
+    assert "Bhagavad Gita 18.66" in polished
+
+
+def test_polish_double_hyphen_truncated_citation_breaks_into_sentence() -> None:
+    """ASCII ``--`` variant of the em-dash truncated citation pattern."""
+    raw = "Hold your duty lightly--2.Act with steady presence (Bhagavad Gita 2.47)."
+    polished = polish_guidance_full_text(
+        raw,
+        allowed_citation_keys={"2.47"},
+        primary_citation_key="2.47",
+    )
+    assert "--2." not in polished
+    assert "2.Act" not in polished
+    assert "lightly. Act" in polished
+    assert "Bhagavad Gita 2.47" in polished
+
+
+def test_polish_strips_orphan_truncated_chapter_ref_safety_net() -> None:
+    """Final safety net: any leaked ``\\d+.<Capital>`` not part of a well-formed label is stripped."""
+    raw = "Hold the work itself, then 18.Surrender outcomes calmly (Bhagavad Gita 18.66)."
+    polished = polish_guidance_full_text(
+        raw,
+        allowed_citation_keys={"18.66"},
+        primary_citation_key="18.66",
+    )
+    assert "18.Surrender" not in polished
+    assert "Bhagavad Gita 18.66" in polished
 
 
 def test_polish_adds_terminal_period_for_trailing_bare_citation() -> None:

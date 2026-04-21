@@ -25,7 +25,7 @@ class GuidanceRequest(BaseModel):
     eval_debug: bool = Field(
         default=False,
         description=(
-            "When true, SSE `completed.eval` includes Ollama/stream diagnostics; failures are not masked "
+            "When true, SSE `completed.eval` includes generation/stream diagnostics; failures are not masked "
             "with generic fallback text (set via JSON or GUIDANCE_EVAL_DEBUG)."
         ),
     )

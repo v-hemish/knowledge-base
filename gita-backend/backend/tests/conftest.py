@@ -29,11 +29,13 @@ def _clear_embedding_index() -> None:
 
 @pytest.fixture(autouse=True)
 def _reset_guidance_rate_limiter() -> None:
-    from app.core.rate_limit import guidance_rate_limiter
+    from app.core.rate_limit import guidance_rate_limiter, guidance_retrieve_rate_limiter
 
     guidance_rate_limiter().reset()
+    guidance_retrieve_rate_limiter().reset()
     yield
     guidance_rate_limiter().reset()
+    guidance_retrieve_rate_limiter().reset()
 
 
 @pytest.fixture(autouse=True)

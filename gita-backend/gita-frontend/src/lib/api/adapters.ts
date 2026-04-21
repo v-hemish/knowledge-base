@@ -62,7 +62,7 @@ export function parseStreamEnvelope(line: string): GuidanceStreamEnvelope | null
 
 export function asMetadataPayload(data: Record<string, unknown>): StreamMetadataPayload | null {
   if (typeof data.query !== "string") return null;
-  if (typeof data.ollama_model !== "string") return null;
+  if (typeof data.model !== "string") return null;
   if (typeof data.verse_count !== "number") return null;
   return data as unknown as StreamMetadataPayload;
 }

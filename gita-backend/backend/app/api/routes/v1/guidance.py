@@ -8,7 +8,12 @@ from collections.abc import AsyncIterator
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 
-from app.api.deps import check_guidance_rate_limit, get_db_conn, get_settings_dep
+from app.api.deps import (
+    check_guidance_rate_limit,
+    check_guidance_retrieve_rate_limit,
+    get_db_conn,
+    get_settings_dep,
+)
 from app.core.config import Settings
 from app.schemas.guidance import GuidanceFeedbackRequest, GuidanceRequest
 from app.schemas.guidance_retrieve import RetrieveGuidanceResponse
@@ -53,7 +58,7 @@ async def guidance_feedback(
 @router.post("/guidance/retrieve", response_model=RetrieveGuidanceResponse)
 async def guidance_retrieve(
     body: GuidanceRequest,
-    _rate_ok: None = Depends(check_guidance_rate_limit),
+    _rate_ok: None = Depends(check_guidance_retrieve_rate_limit),
     conn: sqlite3.Connection = Depends(get_db_conn),
     settings: Settings = Depends(get_settings_dep),
 ) -> RetrieveGuidanceResponse:
@@ -100,7 +105,7 @@ async def guidance_stream(
     settings: Settings = Depends(get_settings_dep),
 ) -> StreamingResponse:
     """
-    Server-Sent Events stream: verse cards first, then explanation tokens from Ollama.
+    Server-Sent Events stream: verse cards first, then explanation tokens from the LLM.
 
     **Request (JSON body)**
 
@@ -110,7 +115,7 @@ async def guidance_stream(
 
     **SSE shape** — each ``data:`` line is one JSON object with ``event`` and ``data``:
 
-    1. ``metadata`` — ``query``, ``ollama_model``, ``verse_count``
+    1. ``metadata`` — ``query``, ``model``, ``verse_count``
     2. ``verses`` — ``{"verses": [ ... VerseCard ... ]}`` (database text only)
     3. ``token`` — ``{"text": "..."}`` repeated for streamed explanation
     4. ``error`` — optional if generation fails after verses (``code``, ``message``, ``fallback_used``)
@@ -120,7 +125,7 @@ async def guidance_stream(
     **Example first lines (conceptual)**
 
     ```
-    data: {"event":"metadata","data":{"query":"...","ollama_model":"qwen2.5:14b","verse_count":2}}
+    data: {"event":"metadata","data":{"query":"...","model":"gpt-5-mini","verse_count":2}}
     data: {"event":"verses","data":{"verses":[...]}}
     data: {"event":"token","data":{"text":"In this passage"}}
     ```

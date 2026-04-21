@@ -1,0 +1,806 @@
+{
+  "schema": "guidance_review_queries_v1",
+  "description": "Life-theme prompts for verse routing / capture review.",
+  "items": [
+    {
+      "id": "effort_results_burnout_duty_001",
+      "query": "I work hard but feel crushed when results don’t match my effort. How should I think about this?"
+    },
+    {
+      "id": "effort_results_burnout_duty_002",
+      "query": "I obsess over performance metrics and feel burned out. What does the Gita say?"
+    },
+    {
+      "id": "effort_results_burnout_duty_003",
+      "query": "I do my best, but I cannot control what happens next. How do I let go?"
+    },
+    {
+      "id": "effort_results_burnout_duty_004",
+      "query": "I keep tying my self-worth to outcomes. How do I act without that attachment?"
+    },
+    {
+      "id": "effort_results_burnout_duty_005",
+      "query": "I am exhausted from always chasing success. How can I work with more peace?"
+    },
+    {
+      "id": "effort_results_burnout_duty_006",
+      "query": "I keep checking whether my work is paying off. How do I stop obsessing over results?"
+    },
+    {
+      "id": "effort_results_burnout_duty_007",
+      "query": "I feel like all my effort is wasted when things don’t work out."
+    },
+    {
+      "id": "effort_results_burnout_duty_008",
+      "query": "I want to do my duty, but I hate not knowing if it will matter."
+    },
+    {
+      "id": "effort_results_burnout_duty_009",
+      "query": "I feel anxious because I cannot guarantee the outcome of what I’m doing."
+    },
+    {
+      "id": "effort_results_burnout_duty_010",
+      "query": "How do I keep working sincerely when the result is uncertain?"
+    },
+    {
+      "id": "effort_results_burnout_duty_011",
+      "query": "I am afraid to act because I might fail."
+    },
+    {
+      "id": "effort_results_burnout_duty_012",
+      "query": "I feel discouraged when my effort is invisible to others."
+    },
+    {
+      "id": "effort_results_burnout_duty_013",
+      "query": "I’m tired of comparing outcomes instead of respecting the work itself."
+    },
+    {
+      "id": "effort_results_burnout_duty_014",
+      "query": "I want to act well without becoming emotionally dependent on success."
+    },
+    {
+      "id": "effort_results_burnout_duty_015",
+      "query": "My job feels endless and thankless. How do I keep going without bitterness?"
+    },
+    {
+      "id": "effort_results_burnout_duty_016",
+      "query": "I feel like I am becoming mechanical and joyless in my work."
+    },
+    {
+      "id": "effort_results_burnout_duty_017",
+      "query": "I can’t stop measuring my value by achievement."
+    },
+    {
+      "id": "effort_results_burnout_duty_018",
+      "query": "What verse best helps someone who is obsessed with results?"
+    },
+    {
+      "id": "effort_results_burnout_duty_019",
+      "query": "I want peace while working, not just after success."
+    },
+    {
+      "id": "effort_results_burnout_duty_020",
+      "query": "I am losing motivation because my effort hasn’t produced visible rewards."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_021",
+      "query": "I keep procrastinating and then hating myself for it. How do I build discipline?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_022",
+      "query": "I know what I should do, but I keep delaying it."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_023",
+      "query": "I keep sabotaging my own progress. How do I stop?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_024",
+      "query": "How do I become more disciplined without becoming harsh with myself?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_025",
+      "query": "I start habits strongly and then give up after a few days."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_026",
+      "query": "I keep choosing comfort over what I know is right."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_027",
+      "query": "I waste time and then feel ashamed afterward."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_028",
+      "query": "I cannot stay consistent. What guidance does the Gita offer?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_029",
+      "query": "I keep losing to distraction even when I want to do better."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_030",
+      "query": "I need help controlling my impulses."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_031",
+      "query": "I don’t trust myself to follow through anymore."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_032",
+      "query": "I feel weak because my intentions are better than my actions."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_033",
+      "query": "How do I train my mind when it keeps wandering toward comfort?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_034",
+      "query": "I want discipline, but I keep collapsing into laziness."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_035",
+      "query": "I feel like my own mind is working against me."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_036",
+      "query": "I keep breaking promises to myself."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_037",
+      "query": "How do I build steady habits one day at a time?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_038",
+      "query": "What verse best applies to self-discipline and self-mastery?"
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_039",
+      "query": "I want to become stronger inside, not just more productive."
+    },
+    {
+      "id": "discipline_procrastination_self-sabotage_040",
+      "query": "How do I stop degrading myself every time I slip?"
+    },
+    {
+      "id": "anxiety_fear_overwhelm_041",
+      "query": "I feel anxious about the future all the time."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_042",
+      "query": "Fear keeps taking over even when I try to trust."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_043",
+      "query": "I had a panic attack and still feel shaken."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_044",
+      "query": "I feel overwhelmed by everything on my plate."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_045",
+      "query": "My mind keeps running worst-case scenarios."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_046",
+      "query": "I am afraid of making the wrong decision."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_047",
+      "query": "I feel pressure from every direction and don’t know how to stay steady."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_048",
+      "query": "I want to trust God more, but fear keeps winning."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_049",
+      "query": "I feel physically restless and mentally exhausted."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_050",
+      "query": "What does the Gita say about fear and inner steadiness?"
+    },
+    {
+      "id": "anxiety_fear_overwhelm_051",
+      "query": "I keep overthinking what could go wrong."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_052",
+      "query": "I feel trapped between anxiety and responsibility."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_053",
+      "query": "I want peace, but my mind feels chaotic."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_054",
+      "query": "Fear of failure is stopping me from acting."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_055",
+      "query": "I am afraid I will disappoint everyone."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_056",
+      "query": "I cannot calm my mind when I am under pressure."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_057",
+      "query": "I feel flooded by uncertainty."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_058",
+      "query": "How do I act when my mind is full of fear?"
+    },
+    {
+      "id": "anxiety_fear_overwhelm_059",
+      "query": "I am tired of living in anticipation of something bad."
+    },
+    {
+      "id": "anxiety_fear_overwhelm_060",
+      "query": "Give me one verse for anxiety and explain it clearly."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_061",
+      "query": "I want to surrender my anxiety and take refuge in trust in God."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_062",
+      "query": "I want to trust God more, but I don’t know how."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_063",
+      "query": "I feel like I am trying to control everything instead of surrendering."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_064",
+      "query": "What does the Gita say about taking refuge in the divine?"
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_065",
+      "query": "I want to let go and trust, but I keep clinging."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_066",
+      "query": "I pray, but fear still stays in my chest."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_067",
+      "query": "I want to believe I am being carried, not abandoned."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_068",
+      "query": "How do I surrender without becoming passive?"
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_069",
+      "query": "I want to place my life in God’s hands."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_070",
+      "query": "I feel like I’m holding on too tightly to control."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_071",
+      "query": "I want a verse about surrender that feels personal and comforting."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_072",
+      "query": "I long for refuge, but my mind resists trust."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_073",
+      "query": "I want to stop relying only on myself."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_074",
+      "query": "I feel spiritually tired and want to rest in faith."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_075",
+      "query": "What verse best applies to trust in God during fear?"
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_076",
+      "query": "I want to feel held by something greater than myself."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_077",
+      "query": "I need help letting go of control over my life."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_078",
+      "query": "I want a devotional answer, not just a philosophical one."
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_079",
+      "query": "How do I surrender while still doing my duty?"
+    },
+    {
+      "id": "surrender_trust_in_god_spiritual_refuge_080",
+      "query": "I want to trust divine guidance even when I can’t see the path."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_081",
+      "query": "After a loss, I keep replaying what I should have done differently."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_082",
+      "query": "I feel numb after losing someone I loved."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_083",
+      "query": "I cannot stop thinking about what I should have said before it was too late."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_084",
+      "query": "Grief keeps coming in waves and I feel helpless."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_085",
+      "query": "I feel guilty after a loss and don’t know how to live with it."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_086",
+      "query": "I replay old moments and torture myself with “what if.”"
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_087",
+      "query": "I am grieving, but I also feel strangely empty."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_088",
+      "query": "What does the Gita say about grief and impermanence?"
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_089",
+      "query": "I want comfort after loss, but not empty clichés."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_090",
+      "query": "I can’t forgive myself for not doing more."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_091",
+      "query": "I feel stuck in sadness and regret."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_092",
+      "query": "I want to let grief soften me, not destroy me."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_093",
+      "query": "What verse best helps with replaying the past after loss?"
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_094",
+      "query": "I feel haunted by one moment I cannot change."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_095",
+      "query": "I want to keep loving without drowning in grief."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_096",
+      "query": "How do I mourn without collapsing into despair?"
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_097",
+      "query": "I keep wishing I could undo what happened."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_098",
+      "query": "I feel both pain and guilt after this loss."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_099",
+      "query": "I want a verse for grief that is compassionate and practical."
+    },
+    {
+      "id": "grief_regret_loss_replaying_the_past_100",
+      "query": "How do I live when something precious is gone?"
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_101",
+      "query": "I feel ashamed of my past actions and can’t forgive myself."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_102",
+      "query": "I did something wrong and I don’t know how to move forward."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_103",
+      "query": "I carry guilt that keeps returning no matter what I do."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_104",
+      "query": "I feel stained by choices I made in weakness."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_105",
+      "query": "How does the Gita help with shame and self-forgiveness?"
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_106",
+      "query": "I know I was wrong, but I don’t want shame to define me forever."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_107",
+      "query": "I feel morally broken."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_108",
+      "query": "I want to repair what I can, but I also need inner release."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_109",
+      "query": "I keep reliving a mistake I made years ago."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_110",
+      "query": "I’m afraid my past actions say who I really am."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_111",
+      "query": "What verse helps someone who feels unworthy?"
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_112",
+      "query": "I want to stop punishing myself internally."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_113",
+      "query": "I don’t know whether I deserve peace after what I did."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_114",
+      "query": "How do I take responsibility without becoming consumed by guilt?"
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_115",
+      "query": "I want to change, but shame keeps freezing me."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_116",
+      "query": "I’m tired of being at war with myself."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_117",
+      "query": "I want guidance that is honest but not condemning."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_118",
+      "query": "I feel like I ruined something important."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_119",
+      "query": "I want to rebuild integrity after failure."
+    },
+    {
+      "id": "shame_guilt_forgiveness_moral_injury_120",
+      "query": "Give me one verse for guilt and one practical next step."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_121",
+      "query": "I compare myself to others and feel like I’m falling behind in life."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_122",
+      "query": "I feel envious when I see other people succeeding."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_123",
+      "query": "I keep wondering why others seem ahead of me."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_124",
+      "query": "I feel small when I compare my path with theirs."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_125",
+      "query": "I want to stop living through comparison."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_126",
+      "query": "I feel insecure because others are moving faster than me."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_127",
+      "query": "My peace disappears when I compare my achievements."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_128",
+      "query": "How does the Gita help with envy?"
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_129",
+      "query": "I feel like my path is inferior to everyone else’s."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_130",
+      "query": "I keep measuring myself against other people’s timelines."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_131",
+      "query": "I want freedom from jealousy and insecurity."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_132",
+      "query": "I feel ashamed that comparison controls me."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_133",
+      "query": "What verse helps with feeling behind in life?"
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_134",
+      "query": "I want to value my own path more deeply."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_135",
+      "query": "I am tired of needing external validation."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_136",
+      "query": "How do I stop resenting other people’s blessings?"
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_137",
+      "query": "I want to feel grounded in my own dharma."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_138",
+      "query": "I compare careers, relationships, and even spirituality."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_139",
+      "query": "I want a verse for insecurity and self-worth."
+    },
+    {
+      "id": "comparison_envy_insecurity_worth_140",
+      "query": "I feel like my life is late or lesser."
+    },
+    {
+      "id": "anger_hurt_resentment_141",
+      "query": "Someone hurt me deeply. How do I let go without becoming cold?"
+    },
+    {
+      "id": "anger_hurt_resentment_142",
+      "query": "I feel angry at work and don’t know how to calm down."
+    },
+    {
+      "id": "anger_hurt_resentment_143",
+      "query": "Anger keeps taking over my mind."
+    },
+    {
+      "id": "anger_hurt_resentment_144",
+      "query": "I replay an insult and feel heat rising again and again."
+    },
+    {
+      "id": "anger_hurt_resentment_145",
+      "query": "I want to forgive, but part of me wants revenge."
+    },
+    {
+      "id": "anger_hurt_resentment_146",
+      "query": "I feel bitter toward someone who treated me unfairly."
+    },
+    {
+      "id": "anger_hurt_resentment_147",
+      "query": "How does the Gita help with anger?"
+    },
+    {
+      "id": "anger_hurt_resentment_148",
+      "query": "I say things in anger and regret them later."
+    },
+    {
+      "id": "anger_hurt_resentment_149",
+      "query": "I want to keep dignity without becoming hard-hearted."
+    },
+    {
+      "id": "anger_hurt_resentment_150",
+      "query": "My anger is exhausting me."
+    },
+    {
+      "id": "anger_hurt_resentment_151",
+      "query": "I am holding resentment and don’t know how to release it."
+    },
+    {
+      "id": "anger_hurt_resentment_152",
+      "query": "What verse best helps with reactive anger?"
+    },
+    {
+      "id": "anger_hurt_resentment_153",
+      "query": "I want to be strong without being harsh."
+    },
+    {
+      "id": "anger_hurt_resentment_154",
+      "query": "I feel hurt and defensive all the time."
+    },
+    {
+      "id": "anger_hurt_resentment_155",
+      "query": "I want guidance for handling provocation at work."
+    },
+    {
+      "id": "anger_hurt_resentment_156",
+      "query": "How do I respond without becoming reactive?"
+    },
+    {
+      "id": "anger_hurt_resentment_157",
+      "query": "I feel consumed by what someone did to me."
+    },
+    {
+      "id": "anger_hurt_resentment_158",
+      "query": "I want to let go, but not excuse wrong."
+    },
+    {
+      "id": "anger_hurt_resentment_159",
+      "query": "Give me one verse for anger and explain why it fits."
+    },
+    {
+      "id": "anger_hurt_resentment_160",
+      "query": "I want a practical next step for resentment."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_161",
+      "query": "Two people I love want opposite things; I fear making the wrong choice morally."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_162",
+      "query": "I feel torn between compassion and responsibility."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_163",
+      "query": "I want to act with integrity, but I fear disappointing people I love."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_164",
+      "query": "I don’t know which duty should come first."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_165",
+      "query": "I am caught between loyalty and truth."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_166",
+      "query": "I fear doing the right thing because it may hurt others."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_167",
+      "query": "What does the Gita say about conflicting obligations?"
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_168",
+      "query": "I feel morally confused and don’t trust my own judgment."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_169",
+      "query": "I want one verse that helps me choose with clarity."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_170",
+      "query": "I am afraid of being misunderstood if I act honestly."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_171",
+      "query": "I want to do what is right, not just what is easy."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_172",
+      "query": "I feel burdened by the responsibility to choose."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_173",
+      "query": "I want a verse about duty and moral courage."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_174",
+      "query": "I keep postponing a necessary decision."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_175",
+      "query": "I fear the consequences of acting with integrity."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_176",
+      "query": "I need help separating duty from people-pleasing."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_177",
+      "query": "How do I act when every option causes pain?"
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_178",
+      "query": "I want to honor love without betraying truth."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_179",
+      "query": "I feel paralyzed by responsibility."
+    },
+    {
+      "id": "moral_conflict_responsibility_integrity_180",
+      "query": "Give me a deeper answer with two verses on moral conflict."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_181",
+      "query": "Which specific verse best applies to my situation, and why?"
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_182",
+      "query": "Don’t give me generic motivation. Give me one verse and explain it clearly."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_183",
+      "query": "Give me guidance only from the Gita, not general self-help."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_184",
+      "query": "Give me a short answer with one practical next step."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_185",
+      "query": "Give me a deeper answer with two verses and a reflective explanation."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_186",
+      "query": "Give me one primary verse and one supporting verse."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_187",
+      "query": "Be compassionate, practical, and scripture-first."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_188",
+      "query": "Keep the answer brief, calm, and direct."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_189",
+      "query": "Explain the verse in plain modern English."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_190",
+      "query": "Give me only one paragraph and one next step."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_191",
+      "query": "Make the answer devotional in tone."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_192",
+      "query": "Make the answer philosophical in tone."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_193",
+      "query": "Make the answer sound like a wise counselor, not a motivational speaker."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_194",
+      "query": "Tell me why this verse fits better than the others."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_195",
+      "query": "Quote the verse reference clearly and correctly."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_196",
+      "query": "Do not sound preachy or judgmental."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_197",
+      "query": "Give me only Bhagavad Gita guidance with no outside ideas."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_198",
+      "query": "Give me an answer that feels emotionally safe and spiritually grounded."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_199",
+      "query": "Choose the clearest verse, not the most obscure one."
+    },
+    {
+      "id": "spiritual_meta__instruction-following__product_t_200",
+      "query": "I want guidance that is compassionate, practical, and rooted in the Bhagavad Gita."
+    }
+  ]
+}

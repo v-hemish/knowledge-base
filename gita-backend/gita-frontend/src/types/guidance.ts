@@ -53,7 +53,7 @@ export interface GuidanceStreamEnvelope {
 
 export interface StreamMetadataPayload {
   query: string;
-  ollama_model: string;
+  model: string;
   verse_count: number;
 }
 

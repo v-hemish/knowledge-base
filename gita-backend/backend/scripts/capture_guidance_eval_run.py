@@ -1,25 +1,22 @@
 #!/usr/bin/env python3
 """
-Capture guidance stream I/O for each query in data/guidance_review_queries.json.
+Capture guidance stream I/O for each query in a review JSON (default: data/guidance_review_queries.json).
 
-Usage (from backend/, with API and Ollama running):
-  export OLLAMA_MODEL=qwen2.5:14b   # or qwen2.5:32b — restart backend after changing
+For a full core + edge suite, use:
+  data/guidance_comprehensive_review_queries.json
+
+Usage (from backend/, with API running and OPENAI_API_KEY set):
   python scripts/capture_guidance_eval_run.py --out data/guidance_model_review.json
 
-Use ``--debug`` to send ``eval_debug: true`` so the API records Ollama/stream diagnostics in
+  python scripts/capture_guidance_eval_run.py \\
+    --queries data/guidance_comprehensive_review_queries.json \\
+    --out data/guidance_model_review_comprehensive.json
+
+Use ``--debug`` to send ``eval_debug: true`` so the API records generation/stream diagnostics in
 ``completed.eval`` and does not mask failures with the generic fallback paragraph.
 
 Each captured item includes ``client_wall_ms`` (HTTP client wall time). When the API returns
 ``completed.latency_ms``, that object is copied to the item for per-stage server timings.
-
-**Batch order:** the first query in ``items`` is often the first Ollama call after idle, so
-``first_ollama_token_ms_from_request_start`` can look like an outlier (model load / GPU wake).
-Compare against ``latency_ms.ollama_seconds_since_previous_stream_end`` in server logs; run a
-throwaway warmup request or shuffle query order when benchmarking.
-
-Very long first-token times (20–35s) can still appear at moderate prompt sizes when the runner
-was idle, the GPU had to reload weights, or another job contended for Ollama—that is not fixed
-by trimming the text alone; treat as infrastructure / batching.
 
 Compare two JSON files side by side with your own review or scripts/score_guidance_output_eval.py.
 
@@ -41,35 +38,6 @@ from pathlib import Path
 
 def _backend_root() -> Path:
     return Path(__file__).resolve().parents[1]
-
-
-def _warmup_ollama(base_url: str, model: str) -> None:
-    """One tiny /api/chat call so the first real query is not measuring Ollama cold start."""
-    model = (model or "").strip()
-    if not model:
-        print("warmup: skipped (no model; set OLLAMA_MODEL or --ollama-model)", file=sys.stderr)
-        return
-    url = f"{base_url.rstrip('/')}/api/chat"
-    payload = {
-        "model": model,
-        "messages": [{"role": "user", "content": "Reply with the single word OK."}],
-        "stream": False,
-        "options": {"num_predict": 8, "temperature": 0.0},
-    }
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    t0 = time.perf_counter()
-    try:
-        with urllib.request.urlopen(req, timeout=300) as resp:
-            resp.read()
-    except Exception as exc:
-        print(f"warmup: failed ({exc})", file=sys.stderr)
-        return
-    print(f"warmup: ok ({int((time.perf_counter() - t0) * 1000)} ms, {model})", file=sys.stderr)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -105,29 +73,7 @@ def main(argv: list[str] | None = None) -> int:
             "write a sidecar *_failed_<timestamp>.json instead so a good capture is not wiped."
         ),
     )
-    p.add_argument(
-        "--warmup",
-        action="store_true",
-        help=(
-            "Fire a single throwaway /api/chat to Ollama before the batch so the first real "
-            "query is not measuring cold-start (burnout TTFT outlier). Requires OLLAMA_MODEL "
-            "or --ollama-model, and uses --ollama-base-url for the Ollama host."
-        ),
-    )
-    p.add_argument(
-        "--ollama-model",
-        default=os.environ.get("OLLAMA_MODEL", ""),
-        help="Model tag used for --warmup (default OLLAMA_MODEL).",
-    )
-    p.add_argument(
-        "--ollama-base-url",
-        default=os.environ.get("OLLAMA_BASE_URL", "http://127.0.0.1:11434"),
-        help="Ollama host used for --warmup (default OLLAMA_BASE_URL or http://127.0.0.1:11434).",
-    )
     args = p.parse_args(argv)
-
-    if args.warmup:
-        _warmup_ollama(args.ollama_base_url, args.ollama_model)
 
     root = _backend_root()
     qpath = args.queries or (root / "data" / "guidance_review_queries.json")
@@ -139,7 +85,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     url = f"{args.base_url.rstrip('/')}/api/v1/guidance/stream"
-    model_note = os.environ.get("OLLAMA_MODEL", "unknown-from-env")
+    model_note = os.environ.get("OPENAI_MODEL", "unknown-from-env")
 
     results: list[dict] = []
     for it in items_in:
@@ -182,8 +128,8 @@ def main(argv: list[str] | None = None) -> int:
         row: dict = {
             "id": qid,
             "input": q,
-            "model": (meta or {}).get("ollama_model"),
-            "ollama_model_env_note": model_note,
+            "model": (meta or {}).get("model"),
+            "openai_model_env_note": model_note,
             "verses_shown": verses,
             "output": "".join(chunks).strip(),
             "completed": completed,
@@ -212,7 +158,7 @@ def main(argv: list[str] | None = None) -> int:
         failed_path.write_text(text, encoding="utf-8")
         print(
             f"All {len(results)} requests failed; refused to overwrite {out_path}. "
-            f"Wrote diagnostics to {failed_path}. Start the API and Ollama, then retry; "
+            f"Wrote diagnostics to {failed_path}. Start the API and verify OPENAI_API_KEY, then retry; "
             f"or pass --clobber-on-total-failure to overwrite anyway.",
             file=sys.stderr,
         )

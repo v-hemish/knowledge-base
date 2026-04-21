@@ -1,4 +1,4 @@
-"""Readiness probes for SQLite, embedding artifacts, and Ollama (sync HTTP for route handlers)."""
+"""Readiness probes for SQLite, embedding artifacts, and OpenAI configuration."""
 
 from __future__ import annotations
 
@@ -6,8 +6,6 @@ import logging
 import sqlite3
 from pathlib import Path
 from typing import Any
-
-import httpx
 
 from app.core.config import Settings
 from app.db.database import connect
@@ -52,33 +50,40 @@ def check_embeddings_file(npz_path: Path) -> dict[str, Any]:
         return {"ok": False, "detail": str(exc), "path": str(npz_path)}
 
 
-def check_ollama_http(base_url: str, *, timeout_s: float = 3.0) -> dict[str, Any]:
-    """Lightweight reachability check (Ollama ``GET /api/tags``)."""
-    url = f"{base_url.rstrip('/')}/api/tags"
-    try:
-        with httpx.Client(timeout=httpx.Timeout(timeout_s)) as client:
-            resp = client.get(url)
-            resp.raise_for_status()
-        return {"ok": True, "detail": None, "url": url}
-    except httpx.HTTPError as exc:
-        _log.debug("health_ollama_failed", extra={"url": url})
-        return {"ok": False, "detail": str(exc), "url": url}
-    except OSError as exc:
-        return {"ok": False, "detail": str(exc), "url": url}
+def check_openai_config(settings: Settings) -> dict[str, Any]:
+    """Config-only check: confirms API key + model are set.
+
+    A network ping is intentionally avoided here so readiness does not consume credits or
+    couple liveness to OpenAI uptime. Generation failures surface in the SSE error event.
+    """
+    key = (settings.openai_api_key or "").strip()
+    model = (settings.openai_model or "").strip()
+    ok = bool(key) and bool(model)
+    detail = None
+    if not key:
+        detail = "OPENAI_API_KEY not set"
+    elif not model:
+        detail = "OPENAI_MODEL not set"
+    return {
+        "ok": ok,
+        "detail": detail,
+        "model": model or None,
+        "base_url": settings.openai_base_url,
+    }
 
 
 def build_readiness_payload(settings: Settings) -> dict[str, Any]:
     """Aggregate component checks for ``GET /health/ready``."""
     db = check_database(settings.resolved_database_path())
     emb = check_embeddings_file(settings.resolved_embeddings_npz_path())
-    oll = check_ollama_http(settings.ollama_base_url, timeout_s=min(5.0, settings.ollama_connect_timeout_s + 1.0))
-    overall = db["ok"] and emb["ok"] and oll["ok"]
+    oai = check_openai_config(settings)
+    overall = db["ok"] and emb["ok"] and oai["ok"]
     status = "ready" if overall else "degraded"
     return {
         "status": status,
         "components": {
             "database": db,
             "embeddings": emb,
-            "ollama": oll,
+            "openai": oai,
         },
     }

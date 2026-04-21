@@ -13,18 +13,19 @@ router = APIRouter(tags=["health"])
 
 @router.get("/health")
 def health() -> dict[str, str]:
-    """Process liveness: returns ``{"status": "ok"}`` without touching DB or Ollama."""
+    """Process liveness: returns ``{"status": "ok"}`` without touching DB or OpenAI."""
     return {"status": "ok"}
 
 
 @router.get("/health/ready")
 def health_ready(settings: Settings = Depends(get_settings_dep)) -> dict[str, object]:
     """
-    Readiness: SQLite ping, embedding artifact presence/size, and Ollama ``GET /api/tags``.
+    Readiness: SQLite ping, embedding artifact presence/size, and OpenAI config presence.
 
     Use for orchestration probes. ``status`` is ``ready`` only when all components report ``ok``.
+    The OpenAI check is config-only (key + model) — we do not call the API on each probe.
 
-    **Example response (degraded Ollama):**
+    **Example response (degraded OpenAI config):**
 
     ```json
     {
@@ -32,7 +33,7 @@ def health_ready(settings: Settings = Depends(get_settings_dep)) -> dict[str, ob
       "components": {
         "database": {"ok": true, "detail": null, "path": "/tmp/gita.db", "verse_count": 3},
         "embeddings": {"ok": true, "detail": "artifact not present (lexical-only)", "path": "..."},
-        "ollama": {"ok": false, "detail": "...", "url": "http://127.0.0.1:11434/api/tags"}
+        "openai": {"ok": false, "detail": "OPENAI_API_KEY not set", "model": "gpt-5-mini", "base_url": "https://api.openai.com/v1"}
       }
     }
     ```

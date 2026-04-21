@@ -1,0 +1,40 @@
+{
+  "schema": "guidance_review_queries_v1",
+  "description": "Core + edge-case prompts for thorough manual or scripted review of guidance (retrieve + stream). Use with scripts/capture_guidance_eval_run.py --queries data/guidance_comprehensive_review_queries.json",
+  "quality_criteria": [
+    "Picks the right verse(s) for the situation",
+    "Explains why the verse(s) fit",
+    "Sounds calm and human",
+    "Gives one practical next step when appropriate",
+    "Cites verses correctly (no invented text)",
+    "Does not feel generic or repetitive across prompts"
+  ],
+  "items": [
+    {"id": "core_effort_results", "category": "core", "query": "I work hard but feel crushed when results don't match my effort. How should I think about this?"},
+    {"id": "core_procrastination_shame", "category": "core", "query": "I keep procrastinating and then hating myself for it. How do I build discipline?"},
+    {"id": "core_anxious_two_responsibilities", "category": "core", "query": "I feel anxious about making the wrong choice between two responsibilities."},
+    {"id": "core_trust_god_fear", "category": "core", "query": "I want to trust God more, but fear keeps taking over."},
+    {"id": "core_burnout_performance", "category": "core", "query": "I feel burned out from constantly measuring myself by performance."},
+    {"id": "core_loss_replay", "category": "core", "query": "After a loss, I keep replaying what I should have done differently."},
+    {"id": "core_empty_low", "category": "core", "query": "I feel empty and low most days. What can I hold onto right now?"},
+    {"id": "core_compare_behind", "category": "core", "query": "I compare myself to others and feel like I'm falling behind in life."},
+    {"id": "core_short_term_comfort", "category": "core", "query": "I know what I should do, but I keep choosing short-term comfort."},
+    {"id": "core_guilt_after_part", "category": "core", "query": "I feel guilty because I cannot control what happens after I do my part."},
+    {"id": "core_hurt_let_go", "category": "core", "query": "Someone hurt me deeply. How do I let go without becoming cold?"},
+    {"id": "core_integrity_disappoint", "category": "core", "query": "I want to act with integrity, but I fear disappointing people I love."},
+    {"id": "core_chasing_success_no_peace", "category": "core", "query": "I keep chasing success but never feel peaceful after achieving anything."},
+    {"id": "core_spiritually_disconnected", "category": "core", "query": "I feel spiritually disconnected and don't know how to begin again."},
+    {"id": "core_meta_compassionate_gita", "category": "core", "query": "I want guidance that is compassionate, practical, and rooted in the Bhagavad Gita."},
+
+    {"id": "edge_depressed", "category": "edge", "query": "I am depressed. What should I do?"},
+    {"id": "edge_hopeless", "category": "edge", "query": "I feel hopeless and don't want to keep going."},
+    {"id": "edge_panic_attack", "category": "edge", "query": "I had a panic attack and feel overwhelmed."},
+    {"id": "edge_shame_past", "category": "edge", "query": "I feel ashamed of my past actions and can't forgive myself."},
+    {"id": "edge_anger_work", "category": "edge", "query": "Give me advice from the Gita for dealing with anger at work."},
+    {"id": "edge_which_verse_why", "category": "edge", "query": "Which specific verse best applies to my situation, and why?"},
+    {"id": "edge_no_generic_motivation", "category": "edge", "query": "Don't give me generic motivation. Give me one verse and explain it clearly."},
+    {"id": "edge_gita_only_not_selfhelp", "category": "edge", "query": "Give me guidance only from the Gita, not general self-help."},
+    {"id": "edge_short_practical_step", "category": "edge", "query": "Give me a short answer with one practical next step."},
+    {"id": "edge_deeper_two_verses", "category": "edge", "query": "Give me a deeper answer with two verses and a more reflective explanation."}
+  ]
+}

@@ -261,13 +261,55 @@ def _drop_sentence_leading_bare_citation_if_repeated(text: str) -> str:
     return _LEAD_BARE_CIT_CAP_WORD.sub(_repl, text)
 
 
+def _strip_emdash_truncated_inline_citation(text: str) -> str:
+    """Convert em-dash / double-hyphen + truncated chapter ref into a clean sentence break.
+
+    GPT-5-mini emits patterns like ``not the fruit—2.Act with presence`` and ``deliverance—18.Let
+    this promise stand`` — an em-dash followed by ``<chapter>.<CapitalWord>`` where the verse
+    segment is missing. Expanding the citation inline (``—2.47 Act…``) reads awkwardly because
+    the em-dash already pivots tone; the cleanest deterministic repair is to drop the truncated
+    fragment and close into a new sentence (``not the fruit. Act with presence``). The canonical
+    ``Bhagavad Gita <pk>`` label is added at the end of polish via ``enforce_primary_citation_label``,
+    so the structured citation is never lost — only the malformed inline fragment is removed.
+    Handles ASCII double-hyphen (``--``) the same way for models that don't emit Unicode em-dash.
+    """
+    if not text:
+        return text
+    s = re.sub(r"\s*[—–]\s*\d{1,2}\.(?=[A-Z])", ". ", text)
+    s = re.sub(r"\s*--\s*\d{1,2}\.(?=[A-Z])", ". ", s)
+    return s
+
+
+def _strip_orphan_truncated_chapter_ref(text: str) -> str:
+    """Final safety net: strip any remaining ``<digit>+.<Capital>`` that no other pass cleaned.
+
+    After the targeted post-processors run (``_stabilize_primary_citation_mentions`` for known
+    connectors, ``_strip_emdash_truncated_inline_citation`` for em-dashes, the existing
+    ``Bhagavad Gita`` / ``Verse`` / ``chapter`` repairs), anything left in the form
+    ``\\b<digit>+.<Capital>`` is an orphan truncated citation the model emitted in a context we
+    didn't anticipate. Stripping the ``<digit>+.`` token preserves the prose and lets the
+    end-of-polish ``enforce_primary_citation_label`` ensure the canonical label is present
+    exactly once. Skips matches preceded by ``Bhagavad Gita``, ``Gita``, ``Verse``, or
+    ``chapter`` so well-formed labels are untouched.
+    """
+    if not text:
+        return text
+    return re.sub(
+        r"(?<!Bhagavad Gita )(?<!Gita )(?<!Verse )(?<!chapter )(?<!Chapter )\b\d{1,2}\.(?=[A-Z])",
+        "",
+        text,
+    )
+
+
 def _stabilize_primary_citation_mentions(text: str, *, effective_primary_key: str | None) -> str:
     """Repair chapter-only fragments like ``in 2.Focus`` back to MAIN ``2.47`` forms.
 
-    The Ollama model (qwen2.5:14b) sometimes truncates the verse segment of a citation and
-    fuses it with the next word (``in 2.Focus``, ``as stated in 2.Act``). We expand the
-    chapter-only remnant to the MAIN citation so validation does not mark it as
-    ``missing_primary_citation`` and kick us into the deterministic fallback.
+    Models sometimes truncate the verse segment of a citation and fuse it with the next word
+    (``in 2.Focus``, ``as stated in 2.Act``, ``urges in 6.Start``). We expand the chapter-only
+    remnant to the MAIN citation so validation does not mark it as ``missing_primary_citation``
+    and kick us into the deterministic fallback. Em-dash variants (``—2.Act``, ``deliverance—18.Let``)
+    are handled separately in :func:`_strip_emdash_truncated_inline_citation` because they read
+    better as a sentence break than as an expanded inline citation.
     """
     pk = effective_primary_key
     if not pk or "." not in pk:
@@ -378,7 +420,7 @@ def polish_guidance_full_text(
     primary_citation_key: str | None = None,
 ) -> str:
     """
-    One-shot normalization for a complete explanation string (post-Ollama, pre-validation).
+    One-shot normalization for a complete explanation string (post-generation, pre-validation).
 
     Mirrors ``GuidanceOutputController`` cleaning without progressive word/sentence caps.
     """
@@ -390,6 +432,9 @@ def polish_guidance_full_text(
     text = _polish_verbal_glitches(text, effective_primary_key=eff_primary)
     # Before ``_NUMBERED_STEP`` strips ``6. `` from ``Bhagavad Gita 6. lifts``, restore full citation.
     text = _repair_truncated_bhagavad_gita_citation(text, effective_primary_key=eff_primary)
+    # Em-dash truncations (``deliverance—18.Let``) become a clean sentence break before the
+    # connector-based repair so the canonical label only appears once at the end of polish.
+    text = _strip_emdash_truncated_inline_citation(text)
     text = _stabilize_primary_citation_mentions(text, effective_primary_key=eff_primary)
     text = _drop_sentence_leading_bare_citation_if_repeated(text)
     text = (
@@ -431,6 +476,10 @@ def polish_guidance_full_text(
     if re.search(r"\b\d{1,2}\.\d{1,3}\b$", text) and text[-1] not in ".!?":
         text += "."
     text = _strip_rubric_leaks(text).strip()
+    # Last-resort orphan strip: any remaining ``\d+.<Capital>`` not belonging to a well-formed
+    # ``Bhagavad Gita / Verse / chapter`` label is a leaked truncated citation and is removed.
+    text = _strip_orphan_truncated_chapter_ref(text)
+    text = _MULTISPACE.sub(" ", text).strip()
     if eff_primary:
         text = normalize_primary_citation_label(text, primary_citation_key=eff_primary)
         # Final deterministic guarantee: scrub any remaining malformed citation fragments
@@ -759,7 +808,7 @@ class GuidanceOutputController:
         return ""
 
 
-async def stream_ollama_chat_phrased(
+async def stream_chat_phrased(
     upstream: AsyncIterator[str],
 ) -> AsyncIterator[str]:
     """

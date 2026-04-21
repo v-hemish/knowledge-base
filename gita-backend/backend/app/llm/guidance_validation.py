@@ -57,6 +57,17 @@ _MALFORMED_VERSE_REFERENCE = re.compile(
 _ORPHAN_LEAD_BARE_CITATION = re.compile(
     r"(?:^|[.!?]\s+)\d{1,2}\.\d{1,3}\s+[A-Z]",
 )
+# Inline truncated chapter ref glued to the next word (``in 6.Start``, ``—2.Act``, ``deliverance—18.Let``).
+# The polish pass strips / expands these deterministically; this validator pattern is a safety net
+# so any pattern the post-processor missed forces the deterministic fallback rather than streams a
+# malformed citation to users. Excludes well-formed labels (``Bhagavad Gita 2.``, ``Verse 6.``,
+# ``chapter 18.``) which are caught by ``_MALFORMED_VERSE_REFERENCE`` instead.
+_INLINE_TRUNCATED_CHAPTER_REF = re.compile(
+    r"(?<!Bhagavad Gita )(?<!Gita )(?<!Verse )(?<!chapter )(?<!Chapter )"
+    r"(?:[—–]|--|\b(?:in|at|on|of|from|via|per|by|within|about|into|as in|as said in|urges in)\s+)"
+    r"\d{1,2}\.[A-Z]",
+    re.I,
+)
 # Opening-only therapist / worksheet templates. Keep narrow: reject broken tone, not
 # every natural scripture phrase (“this passage”, “remember that duty …”, etc.).
 _BANNED_OPENING = re.compile(
@@ -294,6 +305,9 @@ def validate_guidance_explanation(
 
     if _ORPHAN_LEAD_BARE_CITATION.search(t):
         reasons.append("orphan_leading_bare_citation")
+
+    if _INLINE_TRUNCATED_CHAPTER_REF.search(t):
+        reasons.append("inline_truncated_chapter_ref")
 
     if _TEMPLATE_PHRASES.search(t):
         reasons.append("template_meta_phrase")

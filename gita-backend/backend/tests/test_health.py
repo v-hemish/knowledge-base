@@ -11,15 +11,15 @@ def test_health_ok() -> None:
 
 
 def test_health_ready_has_components() -> None:
-    """Readiness shape is stable; individual ``ok`` flags depend on local Ollama and DB."""
+    """Readiness shape is stable; individual ``ok`` flags depend on env config and DB."""
     client = TestClient(create_app())
     resp = client.get("/health/ready")
     assert resp.status_code == 200
     body = resp.json()
     assert body["status"] in ("ready", "degraded")
     comps = body["components"]
-    assert set(comps.keys()) == {"database", "embeddings", "ollama"}
-    for key in ("database", "embeddings", "ollama"):
+    assert set(comps.keys()) == {"database", "embeddings", "openai"}
+    for key in ("database", "embeddings", "openai"):
         assert "ok" in comps[key]
 
 

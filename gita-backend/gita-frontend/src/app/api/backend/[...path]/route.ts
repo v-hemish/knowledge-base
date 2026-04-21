@@ -51,16 +51,13 @@ export async function POST(
 ) {
   const { path } = await context.params;
   const target = buildTarget(path, "");
-  const init: RequestInit & { duplex?: "half" } = {
+  const buf = await req.arrayBuffer();
+  const res = await fetch(target, {
     method: "POST",
     headers: forwardRequestHeaders(req),
-    body: req.body,
+    body: buf.byteLength ? buf : undefined,
     cache: "no-store",
-  };
-  if (req.body) {
-    init.duplex = "half";
-  }
-  const res = await fetch(target, init);
+  });
   return new Response(res.body, {
     status: res.status,
     headers: forwardResponseHeaders(res),

@@ -16,6 +16,8 @@ from app.evals.metrics import (
     compute_metrics,
 )
 from app.evals.schema import EvalCase, EvalSuiteFile, parse_eval_suite
+from app.llm.query_intent import rank_verses_by_intent_and_fit
+from app.llm.theme_routing import apply_theme_ordered_pins
 from app.retrieval.pipeline import retrieve_verses_for_query
 
 _log = logging.getLogger(__name__)
@@ -29,6 +31,10 @@ async def run_eval_case(
     top_k: int = 3,
 ) -> EvalCaseResult:
     verses = await retrieve_verses_for_query(conn, query=case.user_query, settings=settings)
+    verses = rank_verses_by_intent_and_fit(case.user_query, verses)
+    verses = apply_theme_ordered_pins(case.user_query, verses)
+    if len(verses) > settings.final_verse_count:
+        verses = verses[: settings.final_verse_count]
     cites = tuple(v.citation_key for v in verses[:top_k])
     return case_result_from_run(
         case_id=case.id,

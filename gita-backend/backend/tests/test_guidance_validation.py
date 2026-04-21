@@ -21,6 +21,18 @@ def _p(**kwargs: bool) -> QueryProfile:
         surrender_explicit=kwargs.get("surrender_explicit", False),
         action_without_fruit=kwargs.get("action_without_fruit", False),
         faith_grace_language=kwargs.get("faith_grace_language", False),
+        hedonic_compulsion=kwargs.get("hedonic_compulsion", False),
+        grief_regret=kwargs.get("grief_regret", False),
+        shame_past=kwargs.get("shame_past", False),
+        comparison=kwargs.get("comparison", False),
+        spiritual_restart=kwargs.get("spiritual_restart", False),
+        effort_results=kwargs.get("effort_results", False),
+        fear_of_failure=kwargs.get("fear_of_failure", False),
+        uncertain_outcome=kwargs.get("uncertain_outcome", False),
+        invisible_effort=kwargs.get("invisible_effort", False),
+        self_worth_from_achievement=kwargs.get("self_worth_from_achievement", False),
+        gentle_discipline=kwargs.get("gentle_discipline", False),
+        comfort_over_duty=kwargs.get("comfort_over_duty", False),
     )
 
 
@@ -449,6 +461,65 @@ def test_deterministic_fallback_surrender_explicit_prefers_verse_specific() -> N
     )
     assert "Bhagavad Gita 18.66" in txt
     assert "refuge" in txt
+
+
+def test_validate_flags_inline_truncated_chapter_ref_after_emdash() -> None:
+    """Em-dash + truncated chapter ref (``deliverance—18.Let``) must be flagged so any draft
+    that escapes polish triggers the deterministic salvage / fallback path instead of streaming
+    the malformed citation to users."""
+    text = (
+        "The clearest instruction is to take refuge, trusting surrender brings deliverance—18.Let "
+        "this plain promise stand as a small steady practice today (Bhagavad Gita 18.66)."
+    )
+    vr = validate_guidance_explanation(
+        text,
+        primary_citation_key="18.66",
+        allowed={"18.66"},
+        profile=_p(surrender_explicit=True),
+        min_words=20,
+        max_words=72,
+        max_sentences=3,
+    )
+    assert not vr.ok
+    assert "inline_truncated_chapter_ref" in vr.reasons
+
+
+def test_validate_flags_inline_truncated_chapter_ref_after_connector() -> None:
+    """``as in 2.Letting`` must be flagged; polish handles the connector form, but if a future
+    draft emits a chapter-only fragment after a connector the validator must still catch it."""
+    text = (
+        "The emphasis here is on doing the work without clinging to its results, as in 2.Letting "
+        "go of fixation on metrics can ease the burnout (Bhagavad Gita 2.47)."
+    )
+    vr = validate_guidance_explanation(
+        text,
+        primary_citation_key="2.47",
+        allowed={"2.47"},
+        profile=_p(burnout=True, action_without_fruit=True),
+        min_words=20,
+        max_words=72,
+        max_sentences=3,
+    )
+    assert not vr.ok
+    assert "inline_truncated_chapter_ref" in vr.reasons
+
+
+def test_validate_does_not_flag_well_formed_label() -> None:
+    """``Bhagavad Gita 2.47`` and ``Verse 6.5`` must not be misflagged as truncated refs."""
+    text = (
+        "Bhagavad Gita 2.47 sets the task plainly: act without clinging to outcomes. "
+        "Verse 6.5 reminds you that steady effort is its own quiet ally."
+    )
+    vr = validate_guidance_explanation(
+        text,
+        primary_citation_key="2.47",
+        allowed={"2.47", "6.5"},
+        profile=_p(),
+        min_words=20,
+        max_words=72,
+        max_sentences=3,
+    )
+    assert "inline_truncated_chapter_ref" not in vr.reasons
 
 
 def test_validate_rejects_orphan_leading_bare_citation() -> None:

@@ -1,4 +1,6 @@
 import asyncio
+import json
+from pathlib import Path
 
 import pytest
 
@@ -8,7 +10,18 @@ from app.db.ingestion import ingest_verse_inputs
 from app.db.session import make_engine, make_session_factory, session_scope
 from app.retrieval.lexical import lexical_search
 from app.retrieval.pipeline import retrieve_verses_for_query
-from app.schemas.verse_document import VerseInput
+from app.schemas.verse_document import VerseInput, parse_canonical_verse_file_payload
+
+
+def test_shipped_gita_io_corpus_validates() -> None:
+    """Regression: committed full-corpus JSON must match VerseInput / load_verses schema."""
+    path = Path(__file__).resolve().parents[1] / "data" / "canonical_bhagavadgita_gita_io.json"
+    assert path.is_file(), f"missing shipped corpus at {path}"
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    doc = parse_canonical_verse_file_payload(raw)
+    assert len(doc.verses) == 701
+    assert doc.verses[0].citation_key == "1.1"
+    assert doc.verses[-1].citation_key == "18.78"
 
 
 def _ingest(db_path, verses: list[VerseInput]) -> None:

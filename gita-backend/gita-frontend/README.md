@@ -54,7 +54,7 @@ src/
     layout.tsx, page.tsx, globals.css
     api/backend/[...path]/route.ts   # optional reverse proxy
   components/
-    guidance/   # QuestionForm, VerseCard, VerseList, ExplanationStream, ErrorState, …
+    guidance/   # GuidanceApp, ChatComposer, VerseCard, VerseList, ExplanationStream, …
     status/       # StatusPanel
     ui/           # shadcn-style primitives (button, card, …)
   hooks/

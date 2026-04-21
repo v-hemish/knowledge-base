@@ -1,5 +1,5 @@
 """
-Prompts for local explanation generation (Ollama).
+Prompts for explanation generation.
 
 Verse body in the user message is copied verbatim from the database; the model must not
 mutate it. Commentary refers to verses by citation_key only when needed.
@@ -55,6 +55,10 @@ Scripture-first:
 - Ground claims in the supplied verse wording or careful paraphrase of those lines only. Do not invent verses or doctrines.
 - Do not treat sacred text as medical advice. Do not promise cures.
 
+Questions touching intimacy, sexuality, or compulsive sensual habit:
+- Do **not** repeat, quote, or elaborate the user's explicit graphic details; stay at the level of mind, senses, objects, attachment, steadiness, and modest daily practice.
+- Every sentence should make clear **why these retrieved verses** speak to their dilemma—not generic self-help. If the match is only partial, say that once in plain language (one short clause), then stay with the verses you were given.
+
 Tone:
 - Calm, plain, restrained. Prefer brevity over coverage. Not clinical, not a hotline script, not theatrical devotion.
 - Do not speak as Krishna or any deity in the first person.
@@ -82,6 +86,12 @@ Do **not** insert generic “reach out / get help” boilerplate unless one shor
 If 6.5 is the main verse, keep self-uplift language gentle and brief.
 """
 
+_HEDONIC_COMPULSION_ADDON = """
+Habit / intimacy note (internal; do not quote this header):
+The reader may be struggling with compulsive sensual habit. Stay verse-led: mind, senses, objects, attachment, steadiness, small repeatable turns toward what nourishes.
+Do not echo explicit wording from their question; do not shame; do not promise cures or “freedom by willpower alone.”
+"""
+
 
 def build_guidance_user_message(
     query: str,
@@ -107,7 +117,8 @@ def build_guidance_user_message(
         f"distress={distress or profile.distress}; burnout={profile.burnout}; "
         f"discipline={profile.discipline}; moral={profile.moral_conflict}; "
         f"surrender_explicit={profile.surrender_explicit}; faith_grace={profile.faith_grace_language}; "
-        f"duty_outcomes={profile.action_without_fruit}.",
+        f"duty_outcomes={profile.action_without_fruit}; "
+        f"hedonic_compulsion={profile.hedonic_compulsion}.",
         "",
         "Verse fit (internal; do not paste into the answer):",
     ]
@@ -125,6 +136,8 @@ def build_guidance_user_message(
         parts.append("")
     if distress or profile.distress:
         parts.append(_DISTRESS_USER_ADDON.strip())
+    if profile.hedonic_compulsion:
+        parts.extend(["", _HEDONIC_COMPULSION_ADDON.strip()])
     if (distress or profile.distress) and _GRIEF_OR_LOSS_QUERY.search(query.strip()):
         parts.extend(["", _GRIEF_COMPACT_ADDON])
     if primary:
@@ -159,6 +172,30 @@ def build_guidance_user_message(
     return "\n".join(parts).strip()
 
 
+NO_VERSES_GENERAL_SYSTEM = """You are a calm, careful companion. The user's question did not match any
+Bhagavad Gita verses in the application's local database, so there are no retrieved ślokas to anchor to.
+
+You MUST NOT invent, quote, paraphrase, or cite specific Bhagavad Gita chapter/verse numbers or line text
+as if it came from scripture. Do not pretend a verse was retrieved.
+
+Offer brief, grounded perspective (2 to 4 short sentences): plain text only, no Markdown, no bullet lists,
+no sermon tone, no stock empathy openers. Keep it general and ethically careful."""
+
+
+def build_no_verses_general_messages(*, query: str) -> list[dict[str, str]]:
+    """OpenAI path when FTS/retrieval returns zero verses (no DB verse payload in context)."""
+    return [
+        {"role": "system", "content": NO_VERSES_GENERAL_SYSTEM},
+        {
+            "role": "user",
+            "content": (
+                f"Question:\n{query.strip()}\n\n"
+                "Remember: no verses were retrieved; write only general reflection as instructed."
+            ),
+        },
+    ]
+
+
 def build_guidance_messages(
     *,
     query: str,
@@ -167,7 +204,7 @@ def build_guidance_messages(
     primary_citation_key: str | None = None,
     supporting_citation_key: str | None = None,
 ) -> list[dict[str, str]]:
-    """Messages for Ollama `/api/chat` (system + user)."""
+    """Messages for OpenAI Chat Completions (system + user)."""
     return [
         {"role": "system", "content": GUIDANCE_SYSTEM_PROMPT},
         {
