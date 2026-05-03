@@ -1,6 +1,6 @@
 First Commit
 
-Checking the beemider commits feature. 
+Checking the beemider commits fea ffc ture. 
 
 Just showed up today - Sun Mar 8
 
